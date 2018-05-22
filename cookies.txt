@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.onesignal.com	TRUE	/	FALSE	1999999999	__cfduid	dbb91a9d8394255db722f9dce4bd787c21526887443
+www.raywenderlich.com	TRUE	/	FALSE	1999999999	PHPSESSID	77k8bv1pe1j8g9phqrg6fj4v23
+

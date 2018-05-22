@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js windows">
+  
+<!-- Mirrored from www.raywenderlich.com/149239/htc-vive-tutorial-unity by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 May 2018 07:24:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+          <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PT3PDSN');</script>
+      <!-- End Google Tag Manager -->
+    
+    <script type="text/javascript" lang="en">var rootTag = document.getElementsByTagName("html");var classes = rootTag[0].className;rootTag[0].className = classes.replace("no-js","");if (navigator.appVersion.indexOf("Win")==-1) { classes = rootTag[0].className;rootTag[0].className = classes.replace("windows","") } </script>
+    <meta charset="UTF-8" />
+    <meta property="fb:app_id" content="118196468516511" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>HTC Vive Tutorial for Unity</title>  
+        <meta name="twitter:card" content="photo" />
+        <meta name="twitter:site" content="@rwenderlich" />
+        <meta name="twitter:title" content="HTC Vive Tutorial for Unity | Ray Wenderlich" />
+        <meta name="twitter:description" content="Learn how to use the HTC Vive with Unity! Grab and throw objects, shoot lasers and teleport around an area." />
+        <meta name="twitter:url" content="https://www.raywenderlich.com/149239/htc-vive-tutorial-unity" />
+          
+        <meta property="og:title" content="HTC Vive Tutorial for Unity" />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Ray Wenderlich" />
+        <meta property="og:url" content="https://www.raywenderlich.com/149239/htc-vive-tutorial-unity" />
+        <meta property="og:description" content="Learn how to use the HTC Vive with Unity! Grab and throw objects, shoot lasers and teleport around an area." />
+
+                  <meta name="twitter:image" content="https://koenig-media.raywenderlich.com/uploads/2016/12/Vive-twitter.png" />
+          <meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/12/Vive-twitter.png" />
+        
+<!-- This site is optimized with the Yoast SEO plugin v7.3 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Learn how to use the HTC Vive with Unity! Grab and throw objects, shoot lasers and teleport around an area."/>
+<link rel="canonical" href="htc-vive-tutorial-unity.html" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='http://platform.twitter.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.raywenderlich.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.5"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56692,8205,9792,65039],[55357,56692,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='style-main-css'  href='../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/style.min4e40.css?ver=1526649281' type='text/css' media='all' />
+<link rel='stylesheet' id='highlight.js-css'  href='../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/styles/highlight.js.atom-one-light.mine592.css?ver=9.11.0' type='text/css' media='all' />
+<link rel='stylesheet' id='swiftype-css'  href='../../koenig-assets.raywenderlich.com/wp-content/plugins/swiftype-search/assets/autocomplete55fe.css?ver=4.9.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-pagenavi-css'  href='../../koenig-assets.raywenderlich.com/wp-content/plugins/wp-pagenavi/pagenavi-css44fd.css?ver=2.70' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var swiftypeParams = {"engineKey":"omdTFN4ka9Dq1GBywQZq"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-content/plugins/swiftype-search/assets/install_swiftype.min55fe.js?ver=4.9.5'></script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/scripts/global_combined.1.0.1655fe.js?ver=4.9.5'></script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-content/plugins/easy-spoiler/js/easy-spoiler62ea.js?ver=1.2'></script>
+<link rel='https://api.w.org/' href='https://www.raywenderlich.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.raywenderlich.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://koenig-assets.raywenderlich.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.9.5" />
+<link rel='shortlink' href='https://www.raywenderlich.com/?p=149239' />
+<link rel="alternate" type="application/json+oembed" href="https://www.raywenderlich.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.raywenderlich.com%2F149239%2Fhtc-vive-tutorial-unity" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.raywenderlich.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.raywenderlich.com%2F149239%2Fhtc-vive-tutorial-unity&amp;format=xml" />
+<link type="text/css" rel="stylesheet" href="../../koenig-assets.raywenderlich.com/wp-content/plugins/easy-spoiler/easy-spoiler.css" /><script type="text/javascript"><!--
+function powerpress_pinw(pinw_url){window.open(pinw_url, 'PowerPressPlayer','toolbar=0,status=0,resizable=1,width=460,height=320');	return false;}
+//-->
+</script>
+      <meta name="onesignal" content="wordpress-plugin"/>
+          <link rel="manifest"
+            href="https://www.raywenderlich.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/manifest.json.php?gcm_sender_id="/>
+          <script src="../../cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>    <script>
+
+      window.OneSignal = window.OneSignal || [];
+
+      OneSignal.push( function() {
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = "OneSignalSDKUpdaterWorker.js.html";
+        OneSignal.SERVICE_WORKER_PATH = "OneSignalSDKWorker.js.html";
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/' };
+
+        OneSignal.setDefaultNotificationUrl("https://www.raywenderlich.com/");
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = '653ee6c3-c5e0-440f-9532-0f7d561ae5be';
+oneSignal_options['autoRegister'] = true;
+oneSignal_options['httpPermissionRequest'] = { };
+oneSignal_options['httpPermissionRequest']['enable'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "raywenderlich.com";
+oneSignal_options['welcomeNotification']['message'] = "Thanks — we’ll keep you up-to-date with the latest happenings on the site!";
+oneSignal_options['welcomeNotification']['url'] = "https://www.raywenderlich.com/";
+oneSignal_options['path'] = "https://www.raywenderlich.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['safari_web_id'] = "web.onesignal.auto.08b05e7f-114b-4b4f-a485-263bca659097";
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['notifyButton'] = { };
+oneSignal_options['notifyButton']['enable'] = true;
+oneSignal_options['notifyButton']['position'] = 'bottom-right';
+oneSignal_options['notifyButton']['theme'] = 'default';
+oneSignal_options['notifyButton']['size'] = 'medium';
+oneSignal_options['notifyButton']['prenotify'] = true;
+oneSignal_options['notifyButton']['showCredit'] = false;
+oneSignal_options['notifyButton']['text'] = {};
+oneSignal_options['notifyButton']['colors'] = {};
+oneSignal_options['notifyButton']['colors']['circle.background'] = '#006837';
+oneSignal_options['notifyButton']['colors']['dialog.button.background'] = '#000000';
+oneSignal_options['notifyButton']['colors']['dialog.button.background.hovering'] = '#006837';
+oneSignal_options['notifyButton']['colors']['dialog.button.background.active'] = '#006837';
+              oneSignal_options['autoRegister'] = false;
+              OneSignal.showHttpPrompt();
+              OneSignal.init(window._oneSignalInitOptions);
+                    });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+
+<style type="text/css">
+/* <![CDATA[ */
+img.latex { vertical-align: middle; border: none; }
+/* ]]> */
+</style>
+    <link rel='stylesheet' href='../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/printc070.css?ver=090320131503' type='text/css' media='print' />
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <link rel="pingback" href="https://www.raywenderlich.com/xmlrpc.php" />
+    <script>var siteUrl = 'https://koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich'</script>
+
+    <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=915433011818742&amp;ev=PixelInitialized" /></noscript>
+    <style>.single article.post img { max-width:100%; }</style>
+  </head>
+  <body class="post-template-default single single-post postid-149239 single-format-standard">
+    <!-- BuySellAds Ad Code -->
+    <script type="text/javascript">
+    (function(){
+      var bsa = document.createElement('script');
+         bsa.type = 'text/javascript';
+         bsa.async = true;
+         bsa.src = '../../s3.buysellads.com/ac/bsa.js';
+      (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+    })();
+    </script>
+    <!-- End BuySellAds Ad Code -->
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "../../connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=118196468516511";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+          <!-- Google Tag Manager (noscript) -->
+              <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PT3PDSN"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+    
+    <div id="wrapper">
+      <header id="branding" class="rw_subservice">
+        
+        <div id="main-header">
+          
+          <div id="top-sales-banner" data-cookie-name="subscription2017">
+            <p><a href="https://videos.raywenderlich.com/courses" id="sub-banner-top">Skip the reading — <span>click here</span> for our massive collection of video courses</a></p>
+            <button><img src="https://koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/global/close.svg" alt="close"></button>
+          </div>
+
+          <div class="block">
+            <nav id="top">
+              <ul id="main-nav">
+                <li class="logo-col no-padding">
+                  <div class="logo-left">
+                    <a href="https://www.raywenderlich.com/"></a>
+                  </div>
+                </li>
+
+                <li class="mobile-menu-toggle">
+                  <div>
+                    <button id="toggle-menu" aria-label="Mobile menu"><i class="icon-menu_icon_dash" aria-hidden="true"></i></button>
+                  </div>
+                </li>
+                      
+                <li id="main-links">  
+                  <aside id="search-view" class="grow-wide">
+                    <form action="https://www.raywenderlich.com/" id="nav-search" method="get">
+                      <input type="search" placeholder="Search" id="nav-search-box" name="s">
+                      <input type="hidden" name="cof" value="FORID:10">
+                      <button id="search-submit-mobile" type="submit" aria-label="Submit search">
+                        <svg version="1.1" id="svg-search-mobile" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="20px" viewBox="0 0 34 32" enable-background="new 0 0 34 32" xml:space="preserve" aria-hidden="true">
+                          <path d="M32.128,30.048l-5.312-5.312c-0.032-0.032-0.032-0.032-0.032-0.032l-1.728-1.728c1.983-2.4,3.168-5.504,3.168-8.865
+                                C28.225,6.336,21.889,0,14.112,0C6.336,0,0,6.336,0,14.112c0,7.777,6.336,14.113,14.112,14.113c3.712,0,7.041-1.44,9.568-3.776
+                                l5.088,5.088c0.032,0.032,0.032,0.032,0.032,0.032l1.921,1.92c0.479,0.447,1.184,0.544,1.567,0.128
+                                C32.672,31.232,32.607,30.527,32.128,30.048L32.128,30.048z M14.112,26.24c-6.688,0-12.128-5.44-12.128-12.128
+                                S7.424,1.984,14.112,1.984S26.24,7.424,26.24,14.112S20.8,26.24,14.112,26.24L14.112,26.24z"/>
+                        </svg>
+                      </button>
+                    </form>
+                  </aside>
+                  <ul>
+                    <li class="padding-left">
+                                            <a href="https://www.raywenderlich.com/" class="top-level-link active">
+                        Tutorials<svg version="1.1" class="svg-angle-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="9px" height="9px" viewBox="1.376 11.648 17.824 10.4" enable-background="new 1.376 11.648 17.824 10.4" xml:space="preserve" aria-hidden="true">
+                          <path d="M19.2,13.152c0,0.149-0.063,0.288-0.192,0.416l-8.32,8.321c-0.106,0.105-0.245,0.159-0.416,0.159
+                          c-0.17,0-0.299-0.054-0.384-0.159l-8.32-8.321c-0.128-0.128-0.192-0.267-0.192-0.416s0.064-0.288,0.192-0.416l0.864-0.896
+                          c0.128-0.128,0.267-0.192,0.416-0.192s0.288,0.064,0.416,0.192l7.008,7.008l7.041-7.008c0.105-0.128,0.244-0.192,0.416-0.192
+                          c0.17,0,0.299,0.064,0.383,0.192l0.896,0.896C19.137,12.843,19.2,12.981,19.2,13.152z" />
+                        </svg>
+                      </a>
+                      <ul class="dropdown-menu written-dropdown slighter-fade-up">
+                        <li><a href="https://www.raywenderlich.com/swift-language-tutorials" ><i class="category-icon cat-1" aria-hidden="true"></i><span>Swift</span></a></li>
+                        <li><a href="https://www.raywenderlich.com/ios-tutorials" ><i class="category-icon cat-2" aria-hidden="true"></i><span>iOS</span></a></li>
+                        <li><a href="https://www.raywenderlich.com/android-tutorials" ><i class="category-icon cat-3" aria-hidden="true"></i><span>Android</span></a></li>
+                        <li><a href="https://www.raywenderlich.com/macos-tutorials" ><i class="category-icon cat-4" aria-hidden="true"></i><span>macOS</span></a></li>
+                        <li><a href="https://www.raywenderlich.com/apple-game-frameworks-tutorials" ><i class="category-icon cat-5" aria-hidden="true"></i><span>Apple Game Frameworks</span></a></li>
+                        <li><a href="https://www.raywenderlich.com/unity-tutorials" class="active"><i class="category-icon cat-6" aria-hidden="true"></i><span>Unity</span></a></li>
+                        <li><a href="https://www.raywenderlich.com/articles" ><i class="category-icon cat-7" aria-hidden="true"></i><span>Articles</span></a></li>
+                        <li><a href="https://www.raywenderlich.com/tutorial-archive" ><i class="category-icon cat-8" aria-hidden="true"></i><span>Archive</span></a></li>
+                      </ul>
+                    </li>
+
+                    <li>
+                      <a href="https://videos.raywenderlich.com/" class="top-level-link">Videos<svg version="1.1" class="svg-angle-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="9px" height="9px" viewBox="1.376 11.648 17.824 10.4" enable-background="new 1.376 11.648 17.824 10.4" xml:space="preserve" aria-hidden="true">
+                        <path d="M19.2,13.152c0,0.149-0.063,0.288-0.192,0.416l-8.32,8.321c-0.106,0.105-0.245,0.159-0.416,0.159
+                          c-0.17,0-0.299-0.054-0.384-0.159l-8.32-8.321c-0.128-0.128-0.192-0.267-0.192-0.416s0.064-0.288,0.192-0.416l0.864-0.896
+                          c0.128-0.128,0.267-0.192,0.416-0.192s0.288,0.064,0.416,0.192l7.008,7.008l7.041-7.008c0.105-0.128,0.244-0.192,0.416-0.192
+                          c0.17,0,0.299,0.064,0.383,0.192l0.896,0.896C19.137,12.843,19.2,12.981,19.2,13.152z" />
+                        </svg></a>
+                      <ul class="dropdown-menu video-dropdown slighter-fade-up">
+                        <li><a href="https://videos.raywenderlich.com/"><i class="category-icon cat-1" aria-hidden="true"></i><span>Home</span></a></li>
+                        <li><a href="https://videos.raywenderlich.com/courses"><i class="category-icon cat-2" aria-hidden="true"></i><span>Courses</span></a></li>
+                        <li><a href="https://videos.raywenderlich.com/screencasts"><i class="category-icon cat-3" aria-hidden="true"></i><span>Screencasts</span></a></li>
+                        <li><a href="https://videos.raywenderlich.com/schedule"><i class="category-icon cat-4" aria-hidden="true"></i><span>Upcoming</span></a></li>
+                      </ul>
+                    </li>
+
+                    <li><a href="https://www.raywenderlich.com/rwpodcast" >Podcast</a></li>
+                    <li><a href="https://forums.raywenderlich.com/">Forums</a></li>
+                    <li class="padding-right">
+                      <a href="https://store.raywenderlich.com/">Store</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="search-button-holder-desktop">
+                  <button id="search-submit-desktop" class="search-submit" aria-label="Show search field">
+                    <svg version="1.1" id="svg-search-desktop" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22px" height="22px" viewBox="0 0 34 32" enable-background="new 0 0 34 32" xml:space="preserve" aria-hidden="true">
+                    <path d="M32.128,30.048l-5.312-5.312c-0.032-0.032-0.032-0.032-0.032-0.032l-1.728-1.728c1.983-2.4,3.168-5.504,3.168-8.865
+                      C28.225,6.336,21.889,0,14.112,0C6.336,0,0,6.336,0,14.112c0,7.777,6.336,14.113,14.112,14.113c3.712,0,7.041-1.44,9.568-3.776
+                      l5.088,5.088c0.032,0.032,0.032,0.032,0.032,0.032l1.921,1.92c0.479,0.447,1.184,0.544,1.567,0.128
+                      C32.672,31.232,32.607,30.527,32.128,30.048L32.128,30.048z M14.112,26.24c-6.688,0-12.128-5.44-12.128-12.128
+                      S7.424,1.984,14.112,1.984S26.24,7.424,26.24,14.112S20.8,26.24,14.112,26.24L14.112,26.24z"/>
+                    </svg>
+                  </button>
+                </li>                    
+  
+                <script>
+                  jQuery.ajax({
+                    type : "POST",
+                    data : { "javascript" : "false", "url"  : window.location.href  },
+                    url : "https://www.raywenderlich.com/wp-content/themes/raywenderlich/templates/login_area.php",
+                    cache : false,
+                  }).done(function(html) {
+                    jQuery("ul#main-nav").append(html);
+                  })
+                </script>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="rw-green-border"></div>
+
+        <div class="subnav-band"></div>
+              <!-- .wrapper -->
+      </header>
+    </div>
+
+    <div class="wrapper clearfix" id="print-header" style="display:none">
+      <img src="https://koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/header-graphic.svg" width="1200" height="78" >
+    </div>
+    <div id="main" class="wrapper clearfix">
+      <div id="container">
+<div id="primary" class="no-margin-left">
+  <div id="primary-container">
+    <div class="banner-ad"  syle="overflow:hidden">
+      <!-- BuySellAds.com Ad Code -->
+      <div id="bsap_1272017" class="bsarocks bsap_39fcef7ed4520883d78f129c33995fd2"></div>
+      <!-- End BuySellAds.com Ad Code -->
+    </div>
+    <div id="content">
+            <article id="post-149239" class="clearfix post-149239 post type-post status-publish format-standard has-post-thumbnail hentry category-how-tos tag-tutorial tag-unity tag-unity3d tag-vr tag-virtual-reality tag-htc-vive tag-vive tag-teleport tag-grab tag-grabbing tag-throwing tag-throw tag-laser">
+        <header class="entry-header">
+          <h2 class="entry-title">
+            <a href="htc-vive-tutorial-unity.html" title="HTC Vive Tutorial for Unity">HTC Vive Tutorial for Unity</a>
+          </h2>
+          <div class="tutorial-meta" id="larger-screens">
+            <div class="author-meta">
+              <a href="https://www.raywenderlich.com/u/blackdragonbe"><img src="../../www.gravatar.com/avatar/86316682b3c7d8d6b0cd50a0d5e6a6ee6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a><a href="https://www.raywenderlich.com/u/blackdragonbe" class="author-name">Eric Van de Kerckhove</a>                    <span class="author-post-date">on December 22, 2016</span>
+                              </div>
+            <div class="social-links">
+              <ul>
+                              </ul>
+            </div>
+          </div>
+        </header>
+
+        
+        <div class="content-wrapper">
+          <p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/Intro.gif" alt="unity-htc-vive" class="alignright size-full bordered" /></p>
+<p>The <a href="https://www.vive.com/us/">HTC Vive</a> is a virtual reality headset developed by <a href="https://en.wikipedia.org/wiki/HTC">HTC</a> and <a href="https://en.wikipedia.org/wiki/Valve_Corporation">Valve Corporation</a>. It lets you step into virtual worlds and experience it as yourself, instead of through an on-screen avatar.</p>
+<p>If you are a Unity developer, making virtual reality games with the HTC Vive into your own games is easy &#8212; you might even say the HTC Vive and Unity are a match made in heaven.</p>
+<p>In this HTC Vive Tutorial, you&#8217;ll learn how to integrate the HTC Vive into your own Unity games. Specifically, you&#8217;ll learn how to:</p>
+<ul>
+<li>Download and configure SteamVR</li>
+<li>Handle the controller&#8217;s input</li>
+<li>Interact with physics objects in VR</li>
+<li>Make a laser pointer</li>
+<li>Teleport around an area</li>
+</ul>
+<p>At the end of this HTC Vive tutorial, you&#8217;ll have a nice little sandbox that&#8217;s primed for further experimentation. Let&#8217;s get started!</p>
+<div class="note">
+<em>Note</em>: Everyone reacts differently to movement and rotation while wearing a head-mounted display. If it&#8217;s your first time, go easy on yourself and take a break if you feel nauseous or uncomfortable. Most people get used to VR quickly. Don&#8217;t fret if you&#8217;re not feeling well the first few times — it&#8217;ll probably pass.</p>
+</div>
+<h2>Getting Started</h2>
+<p>Before you delve into this tutorial, make sure you&#8217;ve got the following:</p>
+<ul>
+<li>A VR-ready Windows PC.</li>
+<li>A <a href="https://unity3d.com/get-unity/download" title="copy of Unity 5.5" target="_blank">copy of Unity 5.5</a> or newer installed on your machine.</li>
+<li>An  <a href="https://www.vive.com/us/product/" title="HTC Vive" target="_blank">HTC Vive</a> with all hardware installed and the software configured and updated.</li>
+<li>Steam and SteamVR installed. See <a href="https://support.steampowered.com/kb_article.php?ref=2001-UXCM-4439" title="this guide" target="_blank">this guide</a>, which will walk you through hardware set up and provide links to download Steam and SteamVR.</li>
+<li>Knowledge of the basics of Unity: <a href="http://www.raywenderlich.com/110263/unity-tutorial-getting-started-part-1" title="Introduction to Unity: Getting Started" target="_blank">Introduction to Unity: Getting Started</a>.</li>
+<li>A basic understanding of scripting: <a href="https://www.raywenderlich.com/127672/introduction-unity-scripting" title="Introduction To Unity Scripting" target="_blank">Introduction To Unity Scripting</a>.</li>
+</ul>
+<p>Make sure that HTC Vive is powered on and connected!</p>
+<p>Download the <a href="https://koenig-media.raywenderlich.com/uploads/2016/12/Introduction-To-HTC-Vive-Starter-1.zip" title="starter project" target="_blank" >starter project</a>, unzip it somewhere and open the folder inside Unity. Take a look at the folders in the Project window:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/AssetFolders.png" alt="AssetFolders" width="125" height="117" class="aligncenter size-full wp-image-149604" /></p>
+<p>Each folder serves as home base for specific assets:</p>
+<ul>
+<li><em>Materials</em>: Materials used for the scene including the blue bouncy balls</li>
+<li><em>Models</em>: All the models</li>
+<li><em>Physics Materials</em>: Bouncy ball physics material</li>
+<li><em>Prefabs</em>: Loose object prefabs</li>
+<li><em>Scenes</em>: The game scene is in here</li>
+<li><em>Scripts</em>: All the scripts</li>
+<li><em>Textures</em>: The single texture shared by all objects in the scene</li>
+</ul>
+<p>Look at the scene view and press the <em>play</em> button to give the &#8220;game&#8221; a try:</p>
+<p><a href="../../koenig-media.raywenderlich.com/uploads/2016/12/FirstSceneView.png"><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/FirstSceneView-650x338.png" alt="FirstSceneView" width="650" height="338" class="aligncenter size-large wp-image-149605" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/FirstSceneView-650x338.png 650w, https://koenig-media.raywenderlich.com/uploads/2016/12/FirstSceneView-480x250.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/FirstSceneView.png 1006w" sizes="(max-width: 650px) 100vw, 650px" /></a></p>
+<p>At the moment, not much is happening because there&#8217;s no VR rig in the scene yet. You&#8217;ll need to add SteamVR to the project to connect the Vive to Unity.<br />
+Before setting up SteamVR, expand <em>Level</em> in the Hierarchy and select <em>Floor</em>. Set its layer to <em>CanTeleport</em>, it&#8217;s already selected but Unity 5.6 changed the way layers work which is why this needs to be set again for everything to work correctly.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/CanTeleportLayer.png" alt="" width="536" height="85" class="aligncenter size-full wp-image-160426" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/CanTeleportLayer.png 536w, https://koenig-media.raywenderlich.com/uploads/2016/12/CanTeleportLayer-480x76.png 480w" sizes="(max-width: 536px) 100vw, 536px" /></p>
+<h2>Setting Up SteamVR</h2>
+<p><em>SteamVR SDK</em> is an official library made by Valve that makes it easier to develop for the Vive. It&#8217;s currently free on the Asset Store and supports the <em>Oculus Rift</em> and the <em>HTC Vive</em>.</p>
+<p>Open the <em>Asset Store</em> by selecting <em>Window > Asset Store</em> in the top bar:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/AssetStoreSelect.png" alt="AssetStoreSelect" width="291" height="327" class="aligncenter size-full wp-image-149607" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/AssetStoreSelect.png 291w, https://koenig-media.raywenderlich.com/uploads/2016/12/AssetStoreSelect-285x320.png 285w" sizes="(max-width: 291px) 100vw, 291px" /></p>
+<p>Once the store loads, type <em>SteamVR</em> in the search field at the top and press <em>Enter</em>. Scroll down a bit to see a selection of assets. Click <em>SteamVR Plugin</em> to open its store page:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/SteamVRAssetStore.png" alt="SteamVRAssetStore" width="192" height="102" class="aligncenter size-full wp-image-149608" /></p>
+<p>Click the <em>Download</em> button and give it a moment. Once it&#8217;s done, you&#8217;ll see the package import dialog. Click <em>Import</em> at the bottom-right corner to import the package:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ImportPackage.png" alt="ImportPackage" width="736" height="389" class="aligncenter size-full wp-image-149609" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ImportPackage.png 736w, https://koenig-media.raywenderlich.com/uploads/2016/12/ImportPackage-480x254.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/ImportPackage-650x344.png 650w" sizes="(max-width: 736px) 100vw, 736px" /></p>
+<p>At the end of the import, you may see the following message:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ApiUpdate.png" alt="ApiUpdate" width="405" height="231" class="aligncenter size-full wp-image-149610" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ApiUpdate.png 405w, https://koenig-media.raywenderlich.com/uploads/2016/12/ApiUpdate-266x151.png 266w" sizes="(max-width: 405px) 100vw, 405px" /></p>
+<p>Click the button that says <em>I Made a Backup</em> to let the editor recompile the scripts. You&#8217;ll get this window after a few seconds:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/SteamVrSettings.png" alt="SteamVrSettings" width="411" height="479" class="aligncenter size-full wp-image-149611" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/SteamVrSettings.png 411w, https://koenig-media.raywenderlich.com/uploads/2016/12/SteamVrSettings-275x320.png 275w" sizes="(max-width: 411px) 100vw, 411px" /></p>
+<p>This is a part of the SteamVR plugin. It shows which editor settings can be improved to maximize performance and compatibility. </p>
+<p>When you open a fresh project and import SteamVR, you&#8217;ll see quite a few entries. Since the starter project is already well optimized, the only recommendation here is to disable the resolution dialog.</p>
+<p>Click the <em>Accept All</em> button to perform all the recommended changes. Close the Asset Store and switch back to the <em>Scene</em> view. You&#8217;ll now have a new folder named <em>SteamVR</em> in your Project  window:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/SteamVRFolder.png" alt="SteamVRFolder" width="151" height="62" class="aligncenter size-full wp-image-149612" /></p>
+<p>Open the folder and look at the folders inside. You&#8217;ll add VR GameObjects from the <em>Prefabs</em> folder to the scene.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/SteamVrPrefabsFolder.png" alt="SteamVrPrefabsFolder" width="193" height="69" class="aligncenter size-full wp-image-149613" /></p>
+<p>Select both <em>[CameraRig]</em> and <em>[SteamVR]</em> and drag them to the <em>Hierarchy</em> window:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/DragVRPrefabs.gif" alt="DragVRPrefabs" width="232" height="324" class="aligncenter size-full wp-image-149614" /></p>
+<p><em>[SteamVR]</em> handles a few things. It automatically pauses the game when a player opens the system menu and syncs the physics update rate with that of the rendering system. It also handles smoothing of room-scale VR movement. </p>
+<p>Review the properties in the Inspector panel:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/SteamVrComponent.png" alt="SteamVrComponent" width="718" height="126" class="aligncenter size-full wp-image-149615" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/SteamVrComponent.png 718w, https://koenig-media.raywenderlich.com/uploads/2016/12/SteamVrComponent-480x84.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/SteamVrComponent-650x114.png 650w" sizes="(max-width: 718px) 100vw, 718px" /></p>
+<p><em>[CameraRig]</em> is more interesting because it controls the Vive&#8217;s headset and controllers. Select <em>[CameraRig]</em> and in the Inspector panel set its <em>Position</em> at <em>(X:0, Y:0, Z:-1.1)</em> to slide the whole rig just behind the table.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ZPosCameraRig.png" alt="ZPosCameraRig" width="377" height="143" class="aligncenter size-full wp-image-149616" /></p>
+<p>Delete the <em>Main Camera</em> from the <em>Hierarchy</em> because it&#8217;ll interfere with the [CameraRig] and its embedded camera.  </p>
+<p>Turn on the controllers and start the scene. Take both controllers and swing them around a bit. You&#8217;ll notice that you actually see the virtual controllers waving around in the <em>Scene</em> view:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ControllerMoveScene.gif" alt="ControllerMoveScene" width="250" height="250" class="aligncenter size-full wp-image-149617" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerMoveScene.gif 250w, https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerMoveScene-32x32.gif 32w, https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerMoveScene-50x50.gif 50w, https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerMoveScene-64x64.gif 64w, https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerMoveScene-96x96.gif 96w, https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerMoveScene-128x128.gif 128w" sizes="(max-width: 250px) 100vw, 250px" /></p>
+<p>Once the SteamVR plugin detects the controllers, it creates these virtual versions. The controllers are mapped to the two Controller children of [CameraRig]:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ControllersHierarchy.png" alt="ControllersHierarchy" width="132" height="68" class="aligncenter size-full wp-image-149618" /></p>
+<p>Now — while still running the scene — select <em>Camera(eye)</em> in the Hierarchy and carefully pick up your head-mounted display by the top strap. Move and rotate it a bit and watch the <em>Scene</em> view:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/HeadMove.gif" alt="HeadMove" width="250" height="250" class="aligncenter size-full wp-image-149619" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/HeadMove.gif 250w, https://koenig-media.raywenderlich.com/uploads/2016/12/HeadMove-32x32.gif 32w, https://koenig-media.raywenderlich.com/uploads/2016/12/HeadMove-50x50.gif 50w, https://koenig-media.raywenderlich.com/uploads/2016/12/HeadMove-64x64.gif 64w, https://koenig-media.raywenderlich.com/uploads/2016/12/HeadMove-96x96.gif 96w, https://koenig-media.raywenderlich.com/uploads/2016/12/HeadMove-128x128.gif 128w" sizes="(max-width: 250px) 100vw, 250px" /></p>
+<p>The camera is linked to the head-mounted display and precisely tracks every movement.<br />
+With Camera (eye) still selected, add a <em>Steam VR_Update Poses</em> component to it. This fixes a bug introduced in Unity 5.6 where the controller wouldn&#8217;t be tracked.</p>
+<p>Now put the head-mounted display on your head, grab the controllers and look and walk around a bit to get a feel for the room.</p>
+<p>You&#8217;ll be disappointed if you try interacting with the objects &#8212; nothing happens. To add functionality beyond movement tracking, you&#8217;ll need to do some scripting.</p>
+<h2>Handling Input</h2>
+<p>Take one of the controllers in your hand and give it a proper look. Each controller has the following inputs:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons.png" alt="ViveControllerButtons" width="825" height="531" class="aligncenter size-full wp-image-149620" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons.png 825w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-480x309.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-650x418.png 650w" sizes="(max-width: 825px) 100vw, 825px" /></p>
+<p>The <em>touchpad</em> acts as a button and an analog &#8220;joystick&#8221;. The controller also has a <em>velocity</em> and  <em>rotational velocity</em> as you move and rotate it; this will prove especially handy when interacting with physics objects.</p>
+<p>Time for some code! Create a new C# script in the <em>Scripts</em> folder, name it <em>ViveControllerInputTest</em> and open it in your favorite code editor.</p>
+<p>Remove the <code>Start()</code> method and add the following right above the <code>Update()</code> method:</p>
+<pre lang="csharp">
+// 1
+private SteamVR_TrackedObject trackedObj;
+// 2
+private SteamVR_Controller.Device Controller
+{
+    get { return SteamVR_Controller.Input((int)trackedObj.index); }
+}
+</pre>
+<p>In here, you&#8217;ve made: </p>
+<ol>
+<li>A reference to the object being tracked. In this case, a controller.</li>
+<li>A <code>Device</code> property to provide easy access to the controller. It uses the tracked object&#8217;s index to return the controller&#8217;s input.</li>
+</ol>
+<p>Both the head-mounted display and the controllers are <em>tracked objects</em> — their movement and rotation in the real world are tracked by the HTC Vive base stations and sent to the virtual world.</p>
+<p>Now add the following method right above <code>Update()</code>:</p>
+<pre lang="csharp">void Awake()
+{
+    trackedObj = GetComponent&lt;SteamVR_TrackedObject&gt;();
+}
+</pre>
+<p>Once this script is loaded, the <code>trackedObj</code> gets a reference to the <code>SteamVR_TrackedObject</code> component that&#8217;s attached to the controllers:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ControllerTrackedObj.png" alt="ControllerTrackedObj" width="321" height="90" class="aligncenter size-full wp-image-149621" /></p>
+<p>Now that you have controller access, you can easily read out the input. Add the following inside the <code>Update()</code> method:</p>
+<pre lang="csharp">// 1
+if (Controller.GetAxis() != Vector2.zero)
+{
+    Debug.Log(gameObject.name + Controller.GetAxis());
+}
+
+// 2
+if (Controller.GetHairTriggerDown())
+{
+    Debug.Log(gameObject.name + &quot; Trigger Press&quot;);
+}
+
+// 3
+if (Controller.GetHairTriggerUp())
+{
+    Debug.Log(gameObject.name + &quot; Trigger Release&quot;);
+}
+
+// 4
+if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+{
+    Debug.Log(gameObject.name + &quot; Grip Press&quot;);
+}
+
+// 5
+if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+{
+    Debug.Log(gameObject.name + &quot; Grip Release&quot;);
+}
+</pre>
+<p>The code above covers most ways you can access the player&#8217;s input while they are in VR. It writes the name of the GameObject to the Console to easily differentiate between the left and right controller. Here&#8217;s a section-by-section breakdown:</p>
+<ol>
+<li>Get the position of the finger when it&#8217;s on the touchpad and write it to the Console.</li>
+<li>When you squeeze the hair trigger, this line writes to the Console. The hair trigger has special methods to check whether it is pressed or not: <code>GetHairTrigger()</code>, <code>GetHairTriggerDown()</code> and <code>GetHairTriggerUp()</code></li>
+<li>If you release the hair trigger, this <code>if</code> statement writes to the Console.</li>
+<li>If you press a grip button, this section writes to the Console. Using the <code>GetPressDown()</code> method is the standard method to check if a button was pressed.</li>
+<li>When you release one of the grip buttons, this writes that action to the Console. Using the <code>GetPressUp()</code> method is the standard way to check if a button was released.</li>
+</ol>
+<p>The script is now ready to be tested. Save it and return to the Unity editor.</p>
+<p>Select both controllers in the <em>Hierarchy</em> and add the <em>ViveControllerInputTest</em> component to them by dragging the script you just made to the <em>Inspector</em>:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/AddControllerTestComponents.gif" alt="AddControllerTestComponents" width="730" height="293" class="aligncenter size-full wp-image-149622" /></p>
+<p>Run the game again, take both controllers in your hands and look at the Console line at the bottom of the screen:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ConsoleDebugLocation.png" alt="ConsoleDebugLocation" width="506" height="321" class="aligncenter size-full wp-image-149623" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ConsoleDebugLocation.png 506w, https://koenig-media.raywenderlich.com/uploads/2016/12/ConsoleDebugLocation-480x305.png 480w" sizes="(max-width: 506px) 100vw, 506px" /></p>
+<p>Press buttons, squeeze the trigger and move around on the touchpads. You&#8217;ll see the console is busy because each action is registered:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ControllerInputDebug.gif" alt="ControllerInputDebug" width="258" height="21" class="aligncenter size-full wp-image-149624" /></p>
+<p>That&#8217;s it for basic input config. Now you have the power to manipulate the virtual world at your fingertips &#8212; literally!</p>
+<h2>Using The Controllers With Physics Objects</h2>
+<p>VR affords users many opportunities that are not possible in the &#8220;real world&#8221;, including picking objects up, examining them and throwing them around without having to clean up afterward.</p>
+<p>HTC Vive lets you create this carefree virtual experience by employing some trigger colliders and doing a bit of scripting.</p>
+<p>Select <em>both controllers</em> in the Hierarchy and add a <em>Rigidbody</em> component to them. (Add Component > Physics > Rigidbody)</p>
+<p>Check the <em>Is Kinematic</em> checkbox and uncheck <em>Use Gravity</em>:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/RigidBodySetup.png" alt="RigidBodySetup" width="321" height="162" class="aligncenter size-full wp-image-149625" /></p>
+<p>Add a <em>Box Collider</em> (Add Component > Physics > Box Collider) to both controllers and check <em>Is Trigger</em>. </p>
+<p>The default collider is huge, so you&#8217;ll need to resize and reposition it. Set <em>Center</em> to <em>(X:0, Y:-0.04, Z:0.02)</em> and <em>Size</em> to <em>(X:0.14, Y:0.07, Z:0.05)</em>. In this case, you require these kinds of precise values because even a hundredth of a unit affects where the collider ends up.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ControllerBoxCollider.png" alt="ControllerBoxCollider" width="488" height="117" class="aligncenter size-full wp-image-149626" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerBoxCollider.png 488w, https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerBoxCollider-480x115.png 480w" sizes="(max-width: 488px) 100vw, 488px" /></p>
+<p>Run the game again. Select a controller in the <em>Hierarchy</em> and pick up the real controller. Look at the <em>Scene</em> view and focus on the controller you&#8217;re holding (press <em>F</em>). The collider goes right over the top part of the controller, which is the part you use to pick up objects.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ControllerColliderScene.png" alt="ControllerColliderScene" width="431" height="278" class="aligncenter size-full wp-image-149627" /></p>
+<p>Without a script, this collider is little more than a useless cube &#8212; create a new C# script in the <em>Scripts</em> folder, name it <em>ControllerGrabObject</em> and open it.</p>
+<p>Remove the <code>Start()</code> method and add this familiar code in its place:</p>
+<pre lang="csharp">private SteamVR_TrackedObject trackedObj;
+
+private SteamVR_Controller.Device Controller
+{
+    get { return SteamVR_Controller.Input((int)trackedObj.index); }
+}
+
+void Awake()
+{
+    trackedObj = GetComponent&lt;SteamVR_TrackedObject&gt;();
+}
+</pre>
+<p>This is exactly the same code you used for the input test script. It gets the controller and stores a reference to it for later use.</p>
+<p>Add these variables just beneath <code>trackedObj</code> :</p>
+<pre lang="csharp">
+// 1
+private GameObject collidingObject; 
+// 2
+private GameObject objectInHand; 
+</pre>
+<p>Each variable has a purpose:</p>
+<ol>
+<li>Stores the GameObject that the trigger is currently colliding with, so you have the ability to grab the object.</li>
+<li>Serves as a reference to the GameObject that the player is currently grabbing.</li>
+</ol>
+<p>Add this underneath the <code>Awake()</code> method:</p>
+<pre lang="csharp">private void SetCollidingObject(Collider col)
+{
+    // 1
+    if (collidingObject || !col.GetComponent&lt;Rigidbody&gt;())
+    {
+        return;
+    }
+    // 2
+    collidingObject = col.gameObject;
+}
+</pre>
+<p>This method accepts a collider as a parameter and uses its GameObject as the <code>collidingObject</code> for grabbing and releasing. Moreover, it:</p>
+<ol>
+<li>Doesn&#8217;t make the GameObject a potential grab target if the player is already holding something or the object has no rigidbody.</li>
+<li>Assigns the object as a potential grab target.</li>
+</ol>
+<p>Now add these trigger methods:</p>
+<pre lang="csharp">// 1
+public void OnTriggerEnter(Collider other)
+{
+    SetCollidingObject(other);
+}
+
+// 2
+public void OnTriggerStay(Collider other)
+{
+    SetCollidingObject(other);
+}
+
+// 3
+public void OnTriggerExit(Collider other)
+{
+    if (!collidingObject)
+    {
+        return;
+    }
+
+    collidingObject = null;
+}
+</pre>
+<p>These methods handle what should happen when the trigger collider enters and exits another collider.</p>
+<ol>
+<li>When the trigger collider enters another, this sets up the other collider as a potential grab target.</li>
+<li>Similar to section one (// 1), but different because it ensures that the target is set when the player holds a controller over an object for a while. Without this, the collision may fail or become buggy.</li>
+<li>When the collider exits an object, abandoning an ungrabbed target, this code removes its target by setting it to <code>null</code>.</li>
+</ol>
+<p>Next you&#8217;ll add code to grab an object:</p>
+<pre lang="csharp">private void GrabObject()
+{
+    // 1
+    objectInHand = collidingObject;
+    collidingObject = null;
+    // 2
+    var joint = AddFixedJoint();
+    joint.connectedBody = objectInHand.GetComponent&lt;Rigidbody&gt;();
+}
+
+// 3
+private FixedJoint AddFixedJoint()
+{
+    FixedJoint fx = gameObject.AddComponent&lt;FixedJoint&gt;();
+    fx.breakForce = 20000;
+    fx.breakTorque = 20000;
+    return fx;
+}
+</pre>
+<p>In here, you:</p>
+<ol>
+<li>Move the GameObject inside the player&#8217;s hand and remove it from the <code>collidingObject</code> variable.</li>
+<li>Add a new joint that connects the controller to the object using the <code>AddFixedJoint()</code> method below.</li>
+<li>Make a new fixed joint, add it to the controller, and then set it up so it doesn&#8217;t break easily. Finally, you return it.</li>
+</ol>
+<p>What can be grabbed must be released. This next block handles releasing the object:</p>
+<pre lang="csharp">private void ReleaseObject()
+{
+    // 1
+    if (GetComponent&lt;FixedJoint&gt;())
+    {
+        // 2
+        GetComponent&lt;FixedJoint&gt;().connectedBody = null;
+        Destroy(GetComponent&lt;FixedJoint&gt;());
+        // 3
+        objectInHand.GetComponent&lt;Rigidbody&gt;().velocity = Controller.velocity;
+        objectInHand.GetComponent&lt;Rigidbody&gt;().angularVelocity = Controller.angularVelocity;
+    }
+    // 4
+    objectInHand = null;
+}
+</pre>
+<p>This code removes the grabbed object&#8217;s fixed joint and controls its speed and rotation when the player tosses it away. The controller&#8217;s velocity is key here. Without using it, the discarded object would drop straight down no matter how perfect your throw might be. Trust me, it doesn&#8217;t feel right. :]</p>
+<p>Section-by-section breakdown:</p>
+<ol>
+<li>Make sure there&#8217;s a fixed joint attached to the controller.</li>
+<li>Remove the connection to the object held by the joint and destroy the joint.</li>
+<li>Add the speed and rotation of the controller when the player releases the object, so the result is a realistic arc.</li>
+<li>Remove the reference to the formerly attached object.</li>
+</ol>
+<p>Finally, add this inside <code>Update()</code> to handle the controller input:</p>
+<pre lang="csharp">// 1
+if (Controller.GetHairTriggerDown())
+{
+    if (collidingObject)
+    {
+        GrabObject();
+    }
+}
+
+// 2
+if (Controller.GetHairTriggerUp())
+{
+    if (objectInHand)
+    {
+        ReleaseObject();
+    }
+}
+</pre>
+<ol>
+<li>When the player squeezes the trigger and there&#8217;s a potential grab target, this grabs it.</li>
+<li>If the player releases the trigger and there&#8217;s an object attached to the controller, this releases it.</li>
+</ol>
+<p>I bet you can&#8217;t wait to try this out! Save the script and return to the editor.</p>
+<p>Select both controllers in the <em>Hierarchy</em> and drag your new script onto the <em>Inspector</em> to make it into a component.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/DragGrabScript.gif" alt="DragGrabScript" width="568" height="254" class="aligncenter size-full wp-image-149628" /></p>
+<p>Time to have some fun! Get your controllers ready, start the game and put on the headset. Pick up and toss around some cubes and balls using the <em>hair trigger</em>. You can even juggle with a bit of practice.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/GrabbingPlay.gif" alt="GrabbingPlay" width="454" height="256" class="aligncenter size-full wp-image-149629" /></p>
+<p>You have to hand it to yourself &#8212; you&#8217;re pretty awesome right now. But I think you can make your VR experience even cooler!</p>
+<h2>Making A Laser Pointer</h2>
+<p>A laser pointer is handy in a VR world for all sorts of reasons. You can use them to pop virtual balloons, aim guns better and frustrate digital kittens.</p>
+<p>Making one is quite simple. You&#8217;ll just need a cube and another script. Start off by creating a new Cube in the Hierarchy (Create > 3D Object > Cube).</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/CreateCube.png" alt="CreateCube" width="341" height="242" class="aligncenter size-full wp-image-149630" /></p>
+<p>Name it <em>Laser</em>, set its position to <em>(X:0, Y:5, Z:0)</em>, change the scale to <em>(X:0.005, Y:0.005, Z:0)</em> and remove the <em>Box Collider</em> component. Focus on it and you should see it floating above the rest of the level:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/FloatLaser.png" alt="FloatLaser" width="376" height="261" class="aligncenter size-full wp-image-149631" /></p>
+<p>Lasers shouldn&#8217;t cast shadows, and they&#8217;re always the same color, so you can get the desired effect by using an unlit material.</p>
+<p>Create a new material in the <em>Materials</em> folder and name it <em>Laser</em>, and then change its shader to <em>Unlit/Color</em> and set its <em>Main Color</em> to pure red:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/LaserMat.png" alt="LaserMat" width="276" height="119" class="aligncenter size-full wp-image-149632" /></p>
+<p>Assign the new material by dragging it onto the Laser in the <em>Scene</em> view. Alternatively, you can drag it onto the laser in the <em>Hierarchy</em>.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/DragLaserMat.gif" alt="DragLaserMat" width="784" height="151" class="aligncenter size-full wp-image-149633" /></p>
+<p>Finally, drag the <em>Laser</em> to the <em>Prefabs</em> folder and delete the original one from the Hierarchy.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/DragLaserToPrefabs.png" alt="DragLaserToPrefabs" width="411" height="188" class="aligncenter size-full wp-image-152463" /></p>
+<p>Now make a new C# script named <em>LaserPointer</em> in the <em>Scripts</em> folder and open it. Add this familiar helper code:</p>
+<pre lang="csharp">private SteamVR_TrackedObject trackedObj;
+
+private SteamVR_Controller.Device Controller
+{
+    get { return SteamVR_Controller.Input((int)trackedObj.index); }
+}
+
+void Awake()
+{
+    trackedObj = GetComponent&lt;SteamVR_TrackedObject&gt;();
+}
+</pre>
+<p>Add these variables underneath <code>trackedObj</code>:</p>
+<pre lang="csharp">
+// 1
+public GameObject laserPrefab;
+// 2
+private GameObject laser;
+// 3
+private Transform laserTransform;
+// 4
+private Vector3 hitPoint; 
+</pre>
+<ol>
+<li>This is a reference to the Laser&#8217;s prefab.</li>
+<li><code>laser</code> stores a reference to an instance of the laser.</li>
+<li>The transform component is stored for ease of use.</li>
+<li>This is the position where the laser hits.</li>
+</ol>
+<p>Add this method to show the laser:</p>
+<pre lang="csharp">private void ShowLaser(RaycastHit hit)
+{
+    // 1
+    laser.SetActive(true);
+    // 2
+    laserTransform.position = Vector3.Lerp(trackedObj.transform.position, hitPoint, .5f);
+    // 3
+    laserTransform.LookAt(hitPoint); 
+    // 4
+    laserTransform.localScale = new Vector3(laserTransform.localScale.x, laserTransform.localScale.y,
+        hit.distance);
+}
+</pre>
+<p>This method takes a <code>RaycastHit</code> as a parameter because it contains the position of the hit and the distance it traveled. </p>
+<p>Stepping through each section:</p>
+<ol>
+<li>Show the laser.</li>
+<li>Position the laser between the controller and the point where the raycast hits. You use <code>Lerp</code> because you can give it two positions and the percent it should travel. If you pass it <em>0.5f</em>, which is 50%, it returns the precise middle point.</li>
+<li>Point the laser at the position where the raycast hit.</li>
+<li>Scale the laser so it fits perfectly between the two positions.</li>
+</ol>
+<p>Add the following inside the <code>Update()</code> method to make use of the player&#8217;s input:</p>
+<pre lang="csharp">// 1
+if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+{
+    RaycastHit hit;
+
+    // 2
+    if (Physics.Raycast(trackedObj.transform.position, transform.forward, out hit, 100))
+    {
+        hitPoint = hit.point;
+        ShowLaser(hit);
+    }
+}
+else // 3
+{
+    laser.SetActive(false);
+}
+</pre>
+<ol>
+<li>If the touchpad is held down&#8230;</li>
+<li>Shoot a ray from the controller. If it hits something, make it store the point where it hit and show the laser.</li>
+<li>Hide the laser when the player released the touchpad.</li>
+</ol>
+<p>Add the following inside of the empty <code>Start()</code> method:</p>
+<pre lang="csharp">
+// 1
+laser = Instantiate(laserPrefab);
+// 2
+laserTransform = laser.transform;
+</pre>
+<ol>
+<li>Spawn a new laser and save a reference to it in <code>laser</code>.</li>
+<li>Store the laser&#8217;s transform component.</li>
+</ol>
+<p>Save this script and return to the editor. Select both controllers in the <em>Hierarchy</em> and drag the laser script onto the <em>Inspector</em> to make it into a component.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/Draglaser.png" alt="Draglaser" width="712" height="222" class="aligncenter size-full wp-image-149634" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/Draglaser.png 712w, https://koenig-media.raywenderlich.com/uploads/2016/12/Draglaser-480x150.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/Draglaser-650x203.png 650w" sizes="(max-width: 712px) 100vw, 712px" /></p>
+<p>Now drag the <em>Laser</em> prefab from the <em>Prefabs</em> folder onto the <em>Laser</em> slot in the <em>Inspector</em>:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/DragLaserToField.gif" alt="DragLaserToField" width="502" height="190" class="aligncenter size-full wp-image-152464" /></p>
+<p>Save your project and give the game another run. Pick up a controller, put on the headset and try holding the touchpad. You&#8217;ll see a laser now:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/ShootLaser.gif" alt="ShootLaser" width="460" height="260" class="aligncenter size-full wp-image-149636" /></p>
+<p>Before moving on, remove the input test components from the controllers by right-clicking them and selecting <em>Remove Component</em>.</p>
+<p>You&#8217;re removing them because they write strings for every frame and log them to the Console. It&#8217;s not a great thing for performance, and every millisecond counts in VR. They were handy for testing the input, but should not be used for actual gameplay.</p>
+<p>The next step is using this laser to teleport around the room!</p>
+<h2>Moving Around</h2>
+<p>Moving around in VR isn&#8217;t as simple as pushing the player forward; doing so is a sure-fire way to induce nausea. A more feasible way to get around is teleportation. </p>
+<p>The player&#8217;s sense of perception will accept a sudden position change more readily than a gradual one. Subtle changes in a VR setting can upset your feeling of balance and velocity more than suddenly finding yourself in a new place. </p>
+<p>To show exactly where you&#8217;ll end up, you&#8217;ll use a marker or reticle that&#8217;s provided in the <em>Prefabs</em> folder.<br />
+The reticle is a simple, unlit, circular disk:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/Reticle.png" alt="Reticle" width="342" height="300" class="aligncenter size-full wp-image-149638" /></p>
+<p>To use the reticle, you&#8217;ll append the <em>LaserPointer</em> script, so open it in a code editor and add these variables to the top of the class:</p>
+<pre lang="csharp">
+// 1
+public Transform cameraRigTransform; 
+// 2
+public GameObject teleportReticlePrefab;
+// 3
+private GameObject reticle;
+// 4
+private Transform teleportReticleTransform; 
+// 5
+public Transform headTransform; 
+// 6
+public Vector3 teleportReticleOffset; 
+// 7
+public LayerMask teleportMask; 
+// 8
+private bool shouldTeleport; 
+</pre>
+<p>Each variable plays a role:</p>
+<ol>
+<li>Is the transform of <em>[CameraRig]</em>.</li>
+<li>Stores a reference to the teleport reticle prefab.</li>
+<li>A reference to an instance of the reticle.</li>
+<li>Stores a reference to the teleport reticle transform for ease of use.</li>
+<li>Stores a reference to the player&#8217;s head (the camera).</li>
+<li>Is the reticle offset from the floor, so there&#8217;s no &#8220;Z-fighting&#8221; with other surfaces.</li>
+<li>Is a layer mask to filter the areas on which teleports are allowed.</li>
+<li>Is set to <code>true</code> when a valid teleport location is found.</li>
+</ol>
+<p>In the <code>Update()</code> method, replace this line:</p>
+<pre lang="csharp">if (Physics.Raycast(trackedObj.transform.position, transform.forward, out hit, 100))
+</pre>
+<p>With this one that takes the layer mask into account:</p>
+<pre lang="csharp">if (Physics.Raycast(trackedObj.transform.position, transform.forward, out hit, 100, teleportMask))
+</pre>
+<p>This makes sure the laser can only hit GameObjects that you can teleport to.</p>
+<p>Also in the <code>Update()</code> method, add this code underneath the call to <code>ShowLaser()</code>:</p>
+<pre lang="csharp">// 1
+reticle.SetActive(true);
+// 2
+teleportReticleTransform.position = hitPoint + teleportReticleOffset;
+// 3
+shouldTeleport = true;
+</pre>
+<p>Here&#8217;s what this does:</p>
+<ol>
+<li>Show the teleport reticle.</li>
+<li>Move the reticle to where the raycast hit with the addition of an offset to avoid Z-fighting.</li>
+<li>Set <code>shouldTeleport</code> to true to indicate the script found a valid position for teleporting.</li>
+</ol>
+<p>While still in the <code>Update()</code> method, find <code>laser.SetActive(false);</code> and add the following line underneath it: </p>
+<pre lang="csharp">reticle.SetActive(false);
+</pre>
+<p>This hides the reticle in the absence of a valid target.</p>
+<p>Add the following method to handle the act of teleporting:</p>
+<pre lang="csharp">private void Teleport()
+{
+    // 1
+    shouldTeleport = false;
+    // 2
+    reticle.SetActive(false);
+    // 3
+    Vector3 difference = cameraRigTransform.position - headTransform.position;
+    // 4
+    difference.y = 0;
+    // 5
+    cameraRigTransform.position = hitPoint + difference;
+}
+</pre>
+<p>Who knew teleporting is as simple as five lines? Let&#8217;s step through that code:</p>
+<ol>
+<li>Set the <code>shouldTeleport</code> flag to false when teleportation is in progress.</li>
+<li>Hide the reticle.</li>
+<li>Calculate the difference between the positions of the camera rig&#8217;s center and the player&#8217;s head.</li>
+<li>Reset the y-position for the above difference to 0, because the calculation doesn&#8217;t consider the vertical position of the player&#8217;s head.</li>
+<li>Move the camera rig to the position of the hit point and add the calculated difference. Without the difference, the player would teleport to an incorrect location. See the example below:</li>
+</ol>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/TeleportDifference.gif" alt="TeleportDifference" width="387" height="388" class="aligncenter size-full wp-image-149724" /></p>
+<p>As you can see, the difference plays a crucial role in precisely positioning the camera rig and putting the player exactly where they expect to land.</p>
+<p>Add this at the end of <code>Update()</code>, just outside the touchpad press <code>if-else</code> statement:</p>
+<pre lang="csharp">if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) &amp;&amp; shouldTeleport)
+{
+    Teleport();
+}
+</pre>
+<p>This teleports the player if the touchpad is released and there&#8217;s a valid teleport position.</p>
+<p>Finally, add this code to the <code>Start()</code> method:</p>
+<pre lang="csharp">
+// 1
+reticle = Instantiate(teleportReticlePrefab);
+// 2
+teleportReticleTransform = reticle.transform;
+</pre>
+<ol>
+<li>Spawn a new reticle  and save a reference to it in <code>reticle</code>.</li>
+<li>Store the reticle&#8217;s transform component.</li>
+</ol>
+<p>That&#8217;s it! <em>Save</em> your script and return to Unity.</p>
+<p>Select both controllers in the Hierarchy and take note of the new fields:</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/NewFields-1.png" alt="NewFields" width="419" height="125" class="aligncenter size-full wp-image-152466" /></p>
+<p>Drag <em>[CameraRig]</em> to the Camera Rig Transform slot, drag <em>TeleportReticle</em> from the <em>Prefabs</em> folder to the Teleport Reticle Transform slot and drag <em>Camera (head)</em> to the Head Transform slot.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/DraggingObjects.gif" alt="DraggingObjects" width="492" height="207" class="aligncenter size-full wp-image-152467" /></p>
+<p>Now set the <em>Teleport Reticle Offset</em> to <em>(X:0, Y:0.05, Z:0)</em> and set the <em>Teleport Mask</em> to <em>CanTeleport</em>. CanTeleport is not a default layer &#8212; it was created for this tutorial. The <em>Floor</em> and <em>Table</em> objects are the only ones that are part of this layer.</p>
+<p>Now play the game and use your laser on the floor to teleport around the room.</p>
+<p><img src="../../koenig-media.raywenderlich.com/uploads/2016/12/FinalGame.gif" alt="FinalGame" width="495" height="280" class="aligncenter size-full wp-image-149642" /></p>
+<p>This sandbox is now fully functional and ready for endless tinkering!</p>
+<h2>Where To Go From Here?</h2>
+<p>You can download the <a href="https://koenig-media.raywenderlich.com/uploads/2016/12/Introduction-To-HTC-Vive-Final-1.zip" title="complete project here" target="_blank">complete project here</a>. In this HTC Vive tutorial for Unity, you learned how to:</p>
+<ul>
+<li>Download and configure SteamVR.</li>
+<li>Handle the HTC Vive controller input.</li>
+<li>Interact with physics objects in VR.</li>
+<li>Make a laser pointer.</li>
+<li>Teleport around an area.</li>
+</ul>
+<p>This project is just the beginning — make it your own! I&#8217;m curious to see what you all come up with.</p>
+<p>If you&#8217;re enjoyed this tutorial want to learn more, you should definitely check out our book <a href="https://www.raywenderlich.com/store/unity-games-by-tutorials" target="_blank">Unity Games by Tutorials</a>, which has more info on making VR games with Unity, including support for the Oculus Rift.</p>
+<p>The easiest way to understand what&#8217;s in the book is to watch the trailer:</p>
+<p><iframe width="640" height="360" src="https://www.youtube.com/embed/kgU-8Lzqy2E?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></p>
+<p>Thanks for reading, I hope you enjoyed following along with this tutorial as much as I did writing it!</p>
+<p>If you have any suggestions, questions or if you want to show off what you did to improve this project, join the discussion below.</p>
+                  </div>
+
+                    <div class="inline-video-ad" id="sub-banner-inline">
+              <div class="inline-video-ad-wrapper">
+                <a href="https://videos.raywenderlich.com/courses">
+                  <div class="col-wrapper">
+                    <div class="col">
+                      <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/global/video-yeti%402x.png" alt="yeti holding videos">
+                    </div>
+                    <div class="col large-col">
+                      <span>Want to learn even faster? Save time with our <span>video courses</span></span>
+                    </div>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+            <script>
+              jQuery.expr[":"].icontains = jQuery.expr.createPseudo(function (arg) {
+                return function (elem) {
+                  return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;        
+                };
+              });
+              jQuery(document).ready(function() {
+                var finalHeader = jQuery(".content-wrapper h2:icontains('where to go from here')");
+                if (finalHeader.length === 0) {
+                  finalHeader = jQuery(".content-wrapper h2:last");
+                }
+                if (finalHeader.length === 0) {
+                  return;
+                }
+                var inlineAd = jQuery('#sub-banner-inline');
+                finalHeader.after(inlineAd);
+              });
+            </script>
+         
+						<div id="credit-module" class="content-wrapper">
+							<header>
+								<h2>Team</h2>
+								<p>Each tutorial at www.raywenderlich.com is created by a team of dedicated developers so that it meets our high quality standards. The team members who worked on this tutorial are:
+							</header>
+				  
+							<div id="tutorial-editors">
+								<ul>
+									<li>  <img src='../../www.gravatar.com/avatar/86316682b3c7d8d6b0cd50a0d5e6a6eeeffa.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=30' height='30' width='30' '>    <div>Author<br>      <a href="https://www.raywenderlich.com/u/blackdragonbe">Eric Van de Kerckhove</a>    </div>  </li><li>  <img src='../../www.gravatar.com/avatar/00e6bc11f7e1d2c9747d053b06b450afeffa.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=30' height='30' width='30' '>    <div>Tech Editor<br>      <a href="https://www.raywenderlich.com/u/mitch">Mitch Allen</a>    </div>  </li><li>  <img src='../../www.gravatar.com/avatar/cb4c3a88248bece0aab4d7990466e1eceffa.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=30' height='30' width='30' '>    <div>Editor<br>      <a href="https://www.raywenderlich.com/u/wlincoln">Wendy Lincoln</a>    </div>  </li><li>  <img src='../../www.gravatar.com/avatar/824a6fbb8cbbae317c42ec5a94649f9aeffa.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=30' height='30' width='30' '>    <div>Final Pass Editor<br>      <a href="https://www.raywenderlich.com/u/rwenderlich">Ray Wenderlich</a>    </div>  </li><li>  <img src='../../www.gravatar.com/avatar/86316682b3c7d8d6b0cd50a0d5e6a6eeeffa.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=30' height='30' width='30' '>    <div>Team Lead<br>      <a href="https://www.raywenderlich.com/u/blackdragonbe">Eric Van de Kerckhove</a>    </div>  </li>								</ul>
+							</div>
+						</div>
+					        <footer>
+          <div class="social-links" style="border-bottom: none;">
+            <ul>
+              <li class="twitter" style="float: left;"><div id="tweetbutton149239m" class="tw_button" style="margin-bottom:10px;"><a href="http://twitter.com/share?url=https%3A%2F%2Fwww.raywenderlich.com%2F149239%2Fhtc-vive-tutorial-unity&amp;via=rwenderlich&amp;text=HTC%20Vive%20Tutorial%20for%20Unity&amp;related=BlackDragonBE&amp;lang=en&amp;count=horizontal&amp;counturl=https%3A%2F%2Fwww.raywenderlich.com%2F149239%2Fhtc-vive-tutorial-unity" class="twitter-share-button"  style="width:55px;height:22px;background:transparent url('../../koenig-assets.raywenderlich.com/wp-content/plugins/wp-tweet-button/tweetn.png') no-repeat  0 0;text-align:left;text-indent:-9999px;display:block;">Tweet</a></div></li>              <li class="facebook iframe-link" style="position: relative;top: 0px;left: 11px;display: block; float: left;">
+                <iframe src="https://www.facebook.com/plugins/like.php?&amp;href=https://www.raywenderlich.com/149239/htc-vive-tutorial-unity&amp;send=false&amp;layout=button_count&amp;width=74&amp;height=20&amp;show_faces=false&amp;action=like&amp;colosheme=light" allowtransparency="true" frameborder="0" scrolling="no" style="width: 74px; height: 20px;"></iframe>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </article>
+      <div id="author-information" class="clearfix">
+        <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/tutorial-page/arrow%402x.png" width="40" height="21" id="arrow">
+        			
+          <div class="author-photo">
+            <img src="../../www.gravatar.com/avatar/86316682b3c7d8d6b0cd50a0d5e6a6ee6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" />          </div>
+          <div class="author-meta">
+            <a href="https://www.raywenderlich.com/u/blackdragonbe">Eric Van de Kerckhove</a>            <p class="bio">Eric is a belgian hobbyist game dev and has been so for more than 15 years.<br />
+He started with DarkBasic, RPG Maker, Game Maker &amp; XNA and now he makes games using Unity.<br />
+Eric also takes interest in 3D modeling, vector art and playing video games.<br />
+He is the proud Unity team lead.</p>	
+          </div>
+                      <ul class="follow-links">
+              <li class="twitter"><a href="http://www.twitter.com/BlackDragonBE" target="_block">Follow Eric Van de Kerckhove on Twitter</a></li>
+            </ul>
+                </div>
+              <section id="comments">
+                  <div class="excerpt" style="display:none">Learn how to use the HTC Vive with Unity! Grab and throw objects, shoot lasers and teleport around an area.</div>
+        <div id='discourse-comments' style='padding:10px 30px 30px 30px'></div>
+        ​        <script type="text/javascript">
+            DiscourseEmbed = { discourseUrl: "https://forums.raywenderlich.com/",
+                               discourseEmbedUrl: "https://www.raywenderlich.com/149239/htc-vive-tutorial-unity",
+                               discourseUserName: "BlackDragonBE"};
+            (function() {
+              var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+              d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+            })();
+        </script>
+      
+
+        </section>                            
+          </div>
+  </div>
+</div>
+<section id="secondary">
+  <h1 id="other-items-of-interest">Other Items of Interest</h1>
+  <section id="video-subscription-ad" class="rw-module">
+      <a href="https://videos.raywenderlich.com/courses" id="sub-banner-sidebar">
+        <div class="coin-holder">
+          <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/global/subscription-coin-bg-3%402x.png" class="background-coin" alt="">
+          <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/global/subscription-coin-bg-2%402x.png" class="background-coin" alt="">
+          <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/global/subscription-coin-bg-1%402x.png" class="background-coin" alt="">
+          <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/global/subscription-coin-base%402x.png" alt="">
+        </div>
+        <h2><span>Save time.</span><br />Learn more with our video courses.</h2>
+        <button>Get Started!</button>
+      </a>
+  </section>
+
+  <section id="newsletter-signup" class="rw-module">
+    <header>
+      <h1>raywenderlich.com Weekly</h1>
+    </header>
+    <div>
+      <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/global/ia_tilted%402x.png" width="109" height="139">
+      <p>Sign up to receive the latest tutorials from raywenderlich.com each week, and receive a <em>free epic-length tutorial</em> as a bonus!</p>
+      <img src="#">
+      <form novalidate="" target="_blank" class="validate" data-drip-embedded-form="334106757" method="post" action="https://www.getdrip.com/forms/334106757/submissions">
+        <input type="text" class="required" name="fields[name]" value="" placeholder="Your full name">
+        <input type="email" class="required email" name="fields[email]" value="" placeholder="Your best email">
+        <input type="submit" class="button" value="Sign Up!">
+      </form>
+    </div>
+  </section>
+
+  <section id="site-ads">
+    <h1>Advertise with Us!</h1>
+      <div id="bsap_1274837" class="bsarocks bsap_39fcef7ed4520883d78f129c33995fd2"></div>
+      <!-- End BuySellAds Zone Code Goes Here -->
+
+      <!-- BuySellAds.com Zone Code -->
+      <div id="smallads">
+        <div id="bsap_1260352" class="bsarocks bsap_39fcef7ed4520883d78f129c33995fd2 clearfix"></div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="razeware_ads">
+        <a href="http://pragmaconference.com/" target="_blank" class="razewareads"><img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/ads/PragmaConf16_banner_125x125.png" alt="PragmaConf 2016" width="125" height="125" style="margin-left:15px;"></a>
+        <a href="http://www.fivepackcreative.com/alt-u/" target="_blank" class="razewareads"><img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/ads/altu.png" alt="Come check out Alt U" width="125" height="125" style="margin-left:15px"></a>
+      </div>
+
+      <!-- End BuySellAds.com Zone Code -->
+      <a href="http://www.raywenderlich.com/advertise" class="rw-button2" id="advertise-with-us">Advertise Here!</a>
+  </section>
+
+  <section id="our-books" class="rw-module">
+    <header>
+      <h1>Our Books</h1>
+    </header>
+    <div>
+      <ul class="books">
+        <li>
+          <a href="https://store.raywenderlich.com/products/realm-building-modern-swift-apps-with-realm-database">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/rlm%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/data-structures-and-algorithms-in-swift">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/alg%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/design-patterns-by-tutorials">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/des%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/android-apprentice">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/aa%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/kotlin-apprentice">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/ka%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/server-side-swift-with-vapor">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/vpr%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/ios-11-by-tutorials">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/i11t%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/ios-apprentice">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/ia1234%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/advanced-apple-debugging-and-reverse-engineering">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/dbg%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/rxswift">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/rxs%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/unity-games-by-tutorials">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/ua%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/swift-apprentice">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/sa%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/core-data-by-tutorials">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/cdt%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/tvos-apprentice">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/tvt%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/watchos-by-tutorials">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/w2t%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/3d-apple-games-by-tutorials">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/igt2%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/ios-animations-by-tutorials">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/iat%402x.png" width="110" height="142">
+          </a>
+        </li>
+        <li>
+          <a href="https://store.raywenderlich.com/products/2d-apple-games-by-tutorials">
+            <img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/store/profile-page-products/igt1%402x.png" width="110" height="142">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section id="tutorial-team" class="rw-module">
+    <header>
+      <h1>Our Team</h1>
+    </header>
+    <div>
+      <h2>Video Team</h2><ul><li><a href='https://www.raywenderlich.com/about#kmoore'><img src="../../www.gravatar.com/avatar/10c4bad10aeb3312958221c9695e55f76813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#lboaro'><img src="../../www.gravatar.com/avatar/d5d6a5418e689f22ebdd7741398ca0336813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#eamer'><img src="../../www.gravatar.com/avatar/3524ba5c9815a021568e477fe70bdd1b6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_video-team">27 total!</a></p><h2>iOS Team</h2><ul><li><a href='https://www.raywenderlich.com/about#gbarlow'><img src="../../www.gravatar.com/avatar/980745b8cd403f3ffb8d5eace37123b36813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#lsonnenschein'><img src="../../www.gravatar.com/avatar/316091fcf9ba5a5d24c1865b816436b96813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#eamer'><img src="../../www.gravatar.com/avatar/3524ba5c9815a021568e477fe70bdd1b6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_tut-ios">83 total!</a></p><h2>Android Team</h2><ul><li><a href='https://www.raywenderlich.com/about#ssmith'><img src="../../www.gravatar.com/avatar/0595e42e212a10e016e362dc9181933b6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#ecrawford'><img src="../../www.gravatar.com/avatar/cef127c351e84aa523420650e95e4f766813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#vgonda'><img src="../../www.gravatar.com/avatar/2edeb6ac352e7d7ec1fc6587def470426813.png?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_tut-android">44 total!</a></p><h2>Unity Team</h2><ul><li><a href='https://www.raywenderlich.com/about#bmackinnon'><img src="../../www.gravatar.com/avatar/3fbeaec9baca5ec4ee8b9f0f241c7f096813.png?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#jfisher'><img src="../../www.gravatar.com/avatar/4130f53141ff249692b920a0721b100e6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#tkerpelman'><img src="../../www.gravatar.com/avatar/8e42d1b3a58e20619f74d00c55405eff6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_tut-unity">16 total!</a></p><h2>Articles Team</h2><ul><li><a href='https://www.raywenderlich.com/about#ttran'><img src="../../www.gravatar.com/avatar/e6b0f74f6b0294fed6edb668acab8c2c6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#'><img src="../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/images/global/rw-logo_250.png" width="100" height="100"></a></li><li><a href='https://www.raywenderlich.com/about#wlincoln'><img src="../../www.gravatar.com/avatar/cb4c3a88248bece0aab4d7990466e1ec6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_article">4 total!</a></p><h2>Resident Authors Team</h2><ul><li><a href='https://www.raywenderlich.com/about#eshapiro'><img src="../../www.gravatar.com/avatar/62467727d6e6b2fc18d0fed04078578b6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#simpe'><img src="../../www.gravatar.com/avatar/1d1aca7a6cde36af51a4628b3776fb0b6813.png?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#rlucas'><img src="../../www.gravatar.com/avatar/a33664187e29e0f9f66a185fb011b29b6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_resident-authors">31 total!</a></p><h2>Podcast Team</h2><ul><li><a href='https://www.raywenderlich.com/about#crocchi'><img src="../../www.gravatar.com/avatar/dc524a72bf1697fc70a41a2bcf9c8ff86813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#jclayton'><img src="../../www.gravatar.com/avatar/be74593ca7b09a1b92ab64586ffe95336813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#dfreeman'><img src="../../www.gravatar.com/avatar/8c38070338216629f47913bde3c9e7266813.png?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_podcast-team">7 total!</a></p><h2>Recruitment Team</h2><ul><li><a href='https://www.raywenderlich.com/about#mfaarkrog'><img src="../../www.gravatar.com/avatar/4fe99865b3f7f668378b57f0665ef8366813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#ekerber'><img src="../../www.gravatar.com/avatar/d02acb07c90fe0670fc929f8e928ee426813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#jdistler'><img src="../../www.gravatar.com/avatar/f6d6573d309545867ba65b2aaae1d3236813.png?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_recruitment-team">8 total!</a></p><h2>Illustration Team</h2><ul><li><a href='https://www.raywenderlich.com/about#aadriana'><img src="../../www.gravatar.com/avatar/42bfc33c9418258cd65d4fe4486a42566813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#'><img src="../../www.gravatar.com/avatar/c73dcfefb849f134b4d3e47b7d5097aa6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li><li><a href='https://www.raywenderlich.com/about#sstewart'><img src="../../www.gravatar.com/avatar/4bc1561be7a621a6d0a149045e14c48d6813.jpeg?d=https%3A%2F%2Fwolverine.raywenderlich.com%2Fv3-resources%2Fimages%2Fdefault-account-avatar_2x.png&amp;s=100" alt="" width="100" height="100" class="user-avatar" /></a></li></ul><p>... <a href="https://www.raywenderlich.com/about#abt_illustration-team">4 total!</a></p>    </div>
+  </section>
+</section>
+</div>
+</div>
+		<footer id="main-footer">
+      <div class="block">    
+        <div class="top-row">
+          <a href="https://www.raywenderlich.com/" class="logo-mark" aria-label="Home"></a>
+          <ul class="footer-nav">
+            <li><a href="https://www.raywenderlich.com/104320/open-call-for-writers-and-editors">Write For Us</a></li>
+            <li><a href="http://rwdevcon.com/">RWDevCon</a></li>
+            <li><a href="https://store.raywenderlich.com/faq">FAQ</a></li>
+            <li><a href="https://www.raywenderlich.com/advertise">Advertise</a></li>
+            <li><a href="https://www.raywenderlich.com/contact">Contact</a></li>
+          </ul>
+          <ul class="social-media-links">
+            <li><a href="https://www.facebook.com/raywenderlich" aria-label="Follow us on facebook"><i class="icon-facebook-icon" aria-hidden="true"></i><span>14k+ Facebook likes</span></a></li>
+            <li><a href="https://twitter.com/rwenderlich" aria-label="Follow us on Twitter"><i class="icon-twitter-icon" aria-hidden="true"></i><span>66k+ Twitter followers</span></a></li>
+          </ul>
+        </div>
+
+        <div class="middle-row">
+          <div class="col screencast-col">
+            <div class="img-holder">
+            	<img src="../../wolverine.raywenderlich.com/v3-resources/universal-footer/subscribe-footer%402x.png" alt="">
+            </div>  
+            <div class="content-holder">
+              <span>Screencasts &amp; Video Tutorials</span>
+              <a class="no-link">Join over 4,000 subscribers!</a>
+              <p>Keep your iOS &amp; Android skills up-to-date via hands-on tutorials — in video form! The largest collection of iOS, Android, Swift, and Kotlin video courses anywhere.</p>
+              <a class="cta-to-subscribe" href="https://store.raywenderlich.com/products/subscription">Learn more</a>
+            </div>
+          </div>
+          <div class="col newsletter-col">
+            <div class="img-holder">
+            	<img src="../../s3.amazonaws.com/cdn.raywenderlich.com/v3-resources/universal-footer/image-rwweekly%402x.png" alt="Ray Wenderlich Weekly Development Newsletter">
+            </div>
+            <div class="content-holder">
+              <span>Join 55,000+ Developers</span>
+              <a data-drip-attribute="headline">raywenderlich.com Weekly</a>
+              <p data-drip-attribute="description">Sign up to receive the latest tutorials from raywenderlich.com each week, and receive a free epic-length tutorial as a bonus!</p>
+              <form action="https://www.getdrip.com/forms/334106757/submissions"
+                    data-drip-embedded-form="334106757"
+                    method="post"
+                    class="newsletter-signup-footer validate"
+                    target="_blank"
+                    novalidate>
+                <input type="email" name="fields[email]" placeholder="EMAIL">
+                <button type="submit">Sign up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="gearbox">
+        <div class="block">
+          <div id="left-gears">
+            <img src="https://wolverine.raywenderlich.com/v3-resources/universal-footer/gear_small.svg" class="clockwise-motion small-gear gears" id="gear1" alt="">
+            <img src="https://wolverine.raywenderlich.com/v3-resources/universal-footer/gear_medium.svg" class="counter-clockwise-motion  medium-gear gears" id="gear2" alt="">
+            <img src="https://wolverine.raywenderlich.com/v3-resources/universal-footer/gear_large.svg" class="clockwise-motion large-gear gears" id="gear3" alt="">
+            <img src="https://wolverine.raywenderlich.com/v3-resources/universal-footer/gear_medium.svg" class="counter-clockwise-motion medium-gear gears" id="gear4" alt="">
+          </div>
+
+          <ul class="footer-small-links">
+            <li style="margin:0">
+              <a href="https://help.raywenderlich.com/privacy" target="_blank" style="font-size:15px;opacity: 1;"><span>Privacy Policy<i style="margin: 0 9px;">·</i></span></a></li>
+            <li style="margin:0">
+              <a href="https://help.raywenderlich.com/terms-of-service" target="_blank" style="font-size:15px;opacity: 1;"><span>Terms of Service<i style="margin: 0 9px;">·</i></span></a>
+            </li>
+            <li style="margin:0">
+              <span style="font-size: 15px;">© 2018 Razeware LLC.</span>
+            </li>
+          </ul>
+
+          <div id="right-gears">
+            <img src="https://wolverine.raywenderlich.com/v3-resources/universal-footer/gear_small.svg" class="clockwise-motion small-gear gears" id="gear5" alt="">
+            <img src="https://wolverine.raywenderlich.com/v3-resources/universal-footer/gear_medium.svg" class="counter-clockwise-motion  medium-gear gears" id="gear6" alt="">
+            <img src="https://wolverine.raywenderlich.com/v3-resources/universal-footer/gear_large.svg" class="clockwise-motion large-gear gears" id="gear7" alt="">
+            <img src="https://wolverine.raywenderlich.com/v3-resources/universal-footer/gear_medium.svg" class="counter-clockwise-motion medium-gear gears" id="gear8" alt="">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--
+
+                                               _           _ _      _     
+                                              | |         | (_)    | |    
+      _ __ __ _ _   _  __      _____ _ __   __| | ___ _ __| |_  ___| |__  
+     | '__/ _` | | | | \ \ /\ / / _ \ '_ \ / _` |/ _ \ '__| | |/ __| '_ \ 
+     | | | (_| | |_| |  \ V  V /  __/ | | | (_| |  __/ |  | | | (__| | | |
+     |_|  \__,_|\__, |   \_/\_/ \___|_| |_|\__,_|\___|_|  |_|_|\___|_| |_|
+                 __/ |                                                    
+                |___/                                                     
+
+    -->
+
+		<script type='text/javascript' src='../../platform.twitter.com/widgets4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/scripts/highlight.pack54e0.js?ver=20180313'></script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/scripts/code_highlightingc90e.js?ver=20170609'></script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/scripts/countdown5f68.js?ver=20180313.1'></script>
+<script type='text/javascript' src='../../koenig-assets.raywenderlich.com/wp-includes/js/wp-embed.min55fe.js?ver=4.9.5'></script>
+		
+		<script type='text/javascript'>var _merchantSettings=_merchantSettings || [];_merchantSettings.push(['AT', '11ld4k']);(function(){var autolink=document.createElement('script');autolink.type='text/javascript';autolink.async=true; autolink.src='../../autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(autolink, s);})();</script>
+		<script>
+			if (jQuery.browser.msie) { jQuery("html").addClass("msie"); }
+			if (typeof window.chrome === "object") { jQuery("html").addClass("chrome"); }
+		</script>
+	</body>
+
+<!-- Mirrored from www.raywenderlich.com/149239/htc-vive-tutorial-unity by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 May 2018 07:24:30 GMT -->
+</html>
+

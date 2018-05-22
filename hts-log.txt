@@ -1,0 +1,19 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 21 May 2018 09:24:00 at https://www.raywenderlich.com/149239/htc-vive-tutorial-unity +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.raywenderlich.com/149239/htc-vive-tutorial-unity -O1 "C:\Users\mickz\Desktop\Stack\Coderdojo\2018-05 Coderdojo HTC Vive\HTCViveRayWenderlich" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+09:24:30	Error: 	"Bad Request" (400) at link https://www.googletagmanager.com/gtm.js?id= (from https://www.raywenderlich.com/149239/htc-vive-tutorial-unity)
+09:24:43	Error: 	"Not Found" (404) at link https://www.raywenderlich.com/149239/OneSignalSDKUpdaterWorker.js.php (from https://www.raywenderlich.com/149239/htc-vive-tutorial-unity)
+09:24:43	Error: 	"Not Found" (404) at link https://www.raywenderlich.com/149239/OneSignalSDKWorker.js.php (from https://www.raywenderlich.com/149239/htc-vive-tutorial-unity)
+09:24:45	Error: 	"Not Found" (404) at link https://koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/buttons.png (from https://koenig-assets.raywenderlich.com/wp-content/themes/raywenderlich/style.min.css?ver=1526649281)
+09:24:45	Warning: 	Moved Permanently for https://www.raywenderlich.com/149239/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+09:24:45	Warning: 	File has moved from https://www.raywenderlich.com/149239/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ to https://www.raywenderlich.com/149239/htc-vive-tutorial-unity
+09:24:45	Warning: 	Moved Permanently for https://www.raywenderlich.com/149239/^([^:/?
+09:24:45	Warning: 	File has moved from https://www.raywenderlich.com/149239/^([^:/? to https://www.raywenderlich.com/149239/htc-vive-tutorial-unity
+
+HTTrack Website Copier/3.49-2 mirror complete in 45 seconds : 185 links scanned, 178 files written (30907835 bytes overall) [30348315 bytes received at 674407 bytes/sec], 909409 bytes transferred using HTTP compression in 10 files, ratio 23%, 6.8 requests per connection
+(4 errors, 4 warnings, 0 messages)

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <link href="comments_data/embed_6ce891fcc01e08e676327780ec4ce2e9178c81f2.css" media="all" rel="stylesheet" data-target="embed">
+      <link href="comments_data/embedded_theme_9_71ec82713247057a4fe6d1e7eb76402e1bdcadc9.css" media="all" rel="stylesheet" data-target="embedded_theme">
+    <link rel="preload" href="comments_data/break_string-cc617154cd957804f2f6a1f3bc68258c9cdca3d4b9a322bf.js" as="script">
+<script src="comments_data/break_string-cc617154cd957804f2f6a1f3bc68258c9cdca3d4b9a322bf.js"></script>
+
+
+    <script>
+      (function() {
+
+        function postUp(msg) {
+          if (parent) {
+            parent.postMessage(msg, '');
+          }
+        }
+
+        function clickPostLink(e) {
+          var postId = e.target.getAttribute('data-link-to-post');
+          if (postId) {
+            var postElement = document.getElementById('post-' + postId);
+            if (postElement) {
+              var rect = postElement.getBoundingClientRect();
+              if (rect && rect.top) {
+                postUp({type: 'discourse-scroll', top: rect.top});
+                e.preventDefault();
+                return false;
+              }
+            }
+          }
+        }
+
+        window.onload = function() {
+          // Send a post message with our loaded height
+          postUp({type: 'discourse-resize', height: document['body'].offsetHeight});
+
+          var postLinks = document.querySelectorAll("a[data-link-to-post]"),
+              i;
+
+          for (i=0; i<postLinks.length; i++) {
+            postLinks[i].onclick = clickPostLink;
+          }
+
+          // Make sure all links in the iframe point to _blank
+          var cookedLinks = document.querySelectorAll('.cooked a');
+          for (i=0; i<cookedLinks.length; i++) {
+            cookedLinks[i].target = "_blank";
+          }
+
+          // Adjust all names
+          var names = document.querySelectorAll('.username a');
+          for (i=0; i<names.length; i++) {
+            var username = names[i].innerHTML;
+            if (username) {
+              names[i].innerHTML = new BreakString(username).break();
+            }
+          }
+
+        };
+
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="discourse">
+  <h3>Error Embedding</h3>
+  <a href="https://forums.raywenderlich.com/"><img class="logo" src="comments_data/d0342684bc0d4ca22fe893a3af6083387ed8f474.png" alt="D0342684bc0d4ca22fe893a3af6083387ed8f474"></a>
+  <div class="clearfix"></div>
+</header>
+
+  
+
+</body></html>
