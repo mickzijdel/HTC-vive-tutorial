@@ -124,10 +124,12 @@ zodat je niet duizelig of misselijk wordt.<p></p>
 <li><em>Scripts</em>: Alle scripts</li>
 <li><em>Textures</em>: De enkele textuur (oppervlakte) die door alle objecten in de scène wordt gebruikt</li>
 </ul>
+<h2>Omgaan met input</h2>
+<p>Neem een van de controllers in je hand en kijk er goed naar. Elke controller heeft de volgende inputs:</p>
 <p><img src="index_bestanden/ViveControllerButtons.png" alt="ViveControllerButtons" class="aligncenter size-full wp-image-149620" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons.png 825w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-480x309.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-650x418.png 650w" sizes="(max-width: 825px) 100vw, 825px" width="825" height="531"></p>
-<p>The <em>touchpad</em> acts as a button and an analog “joystick”. The controller also has a <em>velocity</em> and  <em>rotational velocity</em> as you move and rotate it; this will prove especially handy when interacting with physics objects.</p>
-<p>Time for some code! Create a new C# script in the <em>Scripts</em> folder, name it <em>ViveControllerInputTest</em> and open it in your favorite code editor.</p>
-<p>Remove the <code>Start()</code> method and add the following right above the <code>Update()</code> method:</p>
+<p>De <em>touchpad</em> lijkt een beetje op een “joystick” van een spelcomputer. De controller heeft ook een <em>velocity (snelheid)</em> en <em>rotational velocity (draaisnelheid)</em> terwijl je beweegt en draait; dit zal vooral handig blijken te zijn bij interactie met objecten in de virtuele wereld.</p>
+<p>Tijd voor wat code! Maak een nieuw C#-script in de map <em>Scripts</em>, noem het <em>ViveControllerInputTest</em>, en open het in je favoriete IDE (bijvoorbeeld Visual Studio Code).</p>
+<p>Verwijder de <code>Start()</code> methode en voeg boven de <code>Update()</code> methode het volgende toe:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> SteamVR_TrackedObject trackedObj;
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 2</span></span></span></span></span>
@@ -136,21 +138,21 @@ zodat je niet duizelig of misselijk wordt.<p></p>
     <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">get</span></span></span></span></span> { <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">return</span></span></span></span></span> SteamVR_Controller.Input((<span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">int</span></span></span></span></span>)trackedObj.index); }
 }
 </pre>
-<p>In here, you’ve made: </p>
+<p>Je hebt nu het volgende gemaakt: </p>
 <ol>
-<li>A reference to the object being tracked. In this case, a controller.</li>
-<li>A <code>Device</code> property to provide easy access to the controller. It uses the tracked object’s index to return the controller’s input.</li>
+<li>Een verwijzing naar het object dat wordt gevolgd. In dit geval een controller.</li>
+<li>Een <code>Device</code> eigenschap om gemakkelijke toegang tot de controller te bieden. Het gebruikt de index (verwijzing op de computer) van het gevolgde voorwerp om de invoer van de controller terug te geven.</li>
 </ol>
-<p>Both the head-mounted display and the controllers are <em>tracked objects</em> — their movement and rotation in the real world are tracked by the HTC Vive base stations and sent to the virtual world.</p>
-<p>Now add the following method right above <code>Update()</code>:</p>
+<p>Zowel het op het hoofd gemonteerde display en de controllers zijn <em>tracked objects</em> (gevolgde voorwerpen) - hun beweging en draaiing in de echte wereld worden gevolgd door de HTC Vive-basisstations en worden verzonden naar de virtuele wereld.</p>
+<p>Voeg nu de volgende methode toe direcet boven de <code>Update()</code> methode:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">Awake</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">(</span></span></span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span>)
 </span></span></span></span></span>{
     trackedObj = GetComponent&lt;SteamVR_TrackedObject&gt;();
 }
 </pre>
-<p>Once this script is loaded, the <code>trackedObj</code> gets a reference to the <code>SteamVR_TrackedObject</code> component that’s attached to the controllers:</p>
+<p>Nadat dit script is geladen, krijgt het <code>trackedObj</code> (object dat wordt gevolgd) een verwijzing naar de <code>SteamVR_TrackedObject</code> -component die aan de controllers is gekoppeld:</p>
 <p><img src="index_bestanden/ControllerTrackedObj.png" alt="ControllerTrackedObj" class="aligncenter size-full wp-image-149621" width="321" height="90"></p>
-<p>Now that you have controller access, you can easily read out the input. Add the following inside the <code>Update()</code> method:</p>
+<p>Nu dat je toegang hebt tot de controller, kan je eenvoudig de invoer uitlezen. Voeg het volgende toe binnen de methode <code>Update()</code>:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">if</span></span></span></span></span> (Controller.GetAxis() != Vector2.zero)
 {
@@ -181,28 +183,25 @@ zodat je niet duizelig of misselijk wordt.<p></p>
     Debug.Log(gameObject.name + <span class="hljs-string"><span class="hljs-string"><span class="hljs-string"><span class="hljs-string"><span class="hljs-string">" Grip Release"</span></span></span></span></span>);
 }
 </pre>
-<p>The code above covers most ways you can access the player’s input 
-while they are in VR. It writes the name of the GameObject to the 
-Console to easily differentiate between the left and right controller. 
-Here’s a section-by-section breakdown:</p>
+<p>De bovenstaande code zorgt voor de meeste manieren waarop je toegang kan krijgen tot de invoer van de speler terwijl deze zich in VR bevindt. Het schrijft de naam van het <em>GameObject</em>
+naar de <em>Console</em> om eenvoudig onderscheid te maken tussen de linker en rechter controller.
+ Hier is een beschrijving per onderdeel:</p>
 <ol>
-<li>Get the position of the finger when it’s on the touchpad and write it to the Console.</li>
-<li>When you squeeze the hair trigger, this line writes to the Console. 
-The hair trigger has special methods to check whether it is pressed or 
-not: <code>GetHairTrigger()</code>, <code>GetHairTriggerDown()</code> and <code>GetHairTriggerUp()</code></li>
-<li>If you release the hair trigger, this <code>if</code> statement writes to the Console.</li>
-<li>If you press a grip button, this section writes to the Console. Using the <code>GetPressDown()</code> method is the standard method to check if a button was pressed.</li>
-<li>When you release one of the grip buttons, this writes that action to the Console. Using the <code>GetPressUp()</code> method is the standard way to check if a button was released.</li>
+<li>Zoek de positie van de vinger wanneer deze zich op het touchpad bevindt en schrijf deze naar de Console.</li>
+<li>Als je de trigger inknijpt, schrijft deze ook een regel naar de Console. De trigger heeft speciale methoden om te controleren of deze is ingedrukt of niet: <code>GetHairTrigger()</code>, <code>GetHairTriggerDown()</code> en <code>GetHairTriggerUp()</code></li>
+<li>Als je de trigger loslaat, schrijft het <code>if</code>-blok deze naar de Console.</li>
+<li>Als je op de Grip-knop drukt, schrijft dit stuk naar deze actie naar de Console. De <code>GetPressDown()</code> methode is de standaardmethode om te controleren of op een knop is gedrukt.</li>
+<li>Als je een van de gripknoppen loslaat, wordt deze actie naar de Console geschreven. Het gebruik van de methode <code>GetPressUp()</code> is de standaardmethode om te controleren of een knop is losgelaten.</li>
 </ol>
-<p>The script is now ready to be tested. Save it and return to the Unity editor.</p>
-<p>Select both controllers in the <em>Hierarchy</em> and add the <em>ViveControllerInputTest</em> component to them by dragging the script you just made to the <em>Inspector</em>:</p>
+<p>Het script is nu klaar om te worden getest. Sla het op en ga terug naar de Unity-editor.</p>
+<p>Selecteer beide controllers in de <em>Hierarchy</em> en voeg de <em>ViveControllerInputTest</em> eraan toe door het script dat je zojuist hebt gemaakt naar de <em>Inspector</em> (infovenster) te slepen:</p>
 <p><img src="index_bestanden/AddControllerTestComponents.gif" alt="AddControllerTestComponents" class="aligncenter size-full wp-image-149622" width="730" height="293"></p>
-<p>Run the game again, take both controllers in your hands and look at the Console line at the bottom of the screen:</p>
+<p><em>Run</em> het spel opnieuw, neem beide controllers in handen en kijk naar de Console regels onderaan het scherm:</p>
 <p><img src="index_bestanden/ConsoleDebugLocation.png" alt="ConsoleDebugLocation" class="aligncenter size-full wp-image-149623" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ConsoleDebugLocation.png 506w, https://koenig-media.raywenderlich.com/uploads/2016/12/ConsoleDebugLocation-480x305.png 480w" sizes="(max-width: 506px) 100vw, 506px" width="506" height="321"></p>
-<p>Press buttons, squeeze the trigger and move around on the touchpads. 
-You’ll see the console is busy because each action is registered:</p>
+<p>Druk op de knoppen, knijp de triggers in en laat ze los, en beweeg op de touchpads. 
+Je ziet dat de Console bezig is om elke actie te registreren:</p>
 <p><img src="index_bestanden/ControllerInputDebug.gif" alt="ControllerInputDebug" class="aligncenter size-full wp-image-149624" width="258" height="21"></p>
-<p>That’s it for basic input config. Now you have the power to manipulate the virtual world at your fingertips — literally!</p>
+<p>Dat is het voor de basis invoer. Nu heb je de macht om de virtuele wereld binnen handbereik te brengen - letterlijk!</p>
 <h2>Using The Controllers With Physics Objects</h2>
 <p>VR affords users many opportunities that are not possible in the 
 “real world”, including picking objects up, examining them and throwing 
