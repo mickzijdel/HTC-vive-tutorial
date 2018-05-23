@@ -112,9 +112,18 @@ zodat je niet duizelig of misselijk wordt.<p></p>
 </div>
 <h2>Het Begin</h2>
 <p>Omschrijving van de scene, camerarig, input</p>
-
-<h2>Handling Input</h2>
-<p>Take one of the controllers in your hand and give it a proper look. Each controller has the following inputs:</p>
+<p>Download het <a href="https://koenig-media.raywenderlich.com/uploads/2016/12/Introduction-To-HTC-Vive-Starter-1.zip" title="starter project" target="_blank" >starter project</a>, Pak het ergens uit en open de map in Unity. Bekijk de mappen in het Project window (projectvenster):</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/12/AssetFolders.png" alt="AssetFolders" width="125" height="117" class="aligncenter size-full wp-image-149604" /></p>
+<p>In elke map staan de volgende dingen:</p>
+<ul>
+<li><em>Materials</em>: Materialen die voor de scène worden gebruikt, inclusief de blauwe ballen</li>
+<li><em>Models</em>: Alle modellen</li>
+<li><em>Physics Materials</em>: Natuurkunde voor de blauwe ballen</li>
+<li><em>Prefabs</em>: Prefabs met losse objecten</li>
+<li><em>Scenes</em>: de scènes van het spel bevinden zich hier</li>
+<li><em>Scripts</em>: Alle scripts</li>
+<li><em>Textures</em>: De enkele textuur (oppervlakte) die door alle objecten in de scène wordt gebruikt</li>
+</ul>
 <p><img src="index_bestanden/ViveControllerButtons.png" alt="ViveControllerButtons" class="aligncenter size-full wp-image-149620" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons.png 825w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-480x309.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-650x418.png 650w" sizes="(max-width: 825px) 100vw, 825px" width="825" height="531"></p>
 <p>The <em>touchpad</em> acts as a button and an analog “joystick”. The controller also has a <em>velocity</em> and  <em>rotational velocity</em> as you move and rotate it; this will prove especially handy when interacting with physics objects.</p>
 <p>Time for some code! Create a new C# script in the <em>Scripts</em> folder, name it <em>ViveControllerInputTest</em> and open it in your favorite code editor.</p>
