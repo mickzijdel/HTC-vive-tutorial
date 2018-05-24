@@ -114,7 +114,7 @@ zodat je niet duizelig of misselijk wordt.<p></p>
 <p> Begin met het installeren van SteamVR via Steam. Ondertussen kan je vast verder met de tutorial. Als je niet weet hoe dit werkt kan je een van de mentoren om hulp vragen. <p>
 <p>Download het <a href="https://stealthific.stackstorage.com/s/BJBy4oxeOw7y59o" title="starter project" target="_blank" >starter project</a>, Pak het ergens uit en open de map in Unity. Bekijk de mappen in het Project window (projectvenster):</p>
 <div class="note">
-<em>Opmerking</em>: In deze tutorial zullen we een aantal keer naar een bepaalt scherm in Unity verwijzen. Op de bijlag ekan je zien welk scherm er bedoelt wordt<p></p>
+<em>Opmerking</em>: In deze tutorial zullen we een aantal keer naar een bepaalt scherm in Unity verwijzen. Op de bijlage kan je zien welk scherm er bedoelt wordt.<p></p>
 </div>
 <p><img src="https://koenig-media.raywenderlich.com/uploads/2016/12/AssetFolders.png" alt="AssetFolders" width="125" height="117" class="aligncenter size-full wp-image-149604" /></p>
 <p>In elke map staan de volgende dingen:</p>
@@ -127,11 +127,12 @@ zodat je niet duizelig of misselijk wordt.<p></p>
 <li><em>Scripts</em>: Alle scripts</li>
 <li><em>Textures</em>: De enkele textuur (oppervlakte) die door alle objecten in de scène wordt gebruikt</li>
 </ul>
+<p> We hebben ook vast de SteamVR Software Development Kit geïmporteerd. Dit is een verzameling van code die het makkelijker maakt om VR games te maken.
 <h2>Omgaan met input</h2>
 <p>Neem een van de controllers in je hand en kijk er goed naar. Elke controller heeft de volgende inputs:</p>
 <p><img src="index_bestanden/ViveControllerButtons.png" alt="ViveControllerButtons" class="aligncenter size-full wp-image-149620" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons.png 825w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-480x309.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-650x418.png 650w" sizes="(max-width: 825px) 100vw, 825px" width="825" height="531"></p>
 <p>De <em>touchpad</em> lijkt een beetje op een “joystick” van een spelcomputer. De controller heeft ook een <em>velocity (snelheid)</em> en <em>rotational velocity (draaisnelheid)</em> terwijl je beweegt en draait; dit zal vooral handig blijken te zijn bij interactie met objecten in de virtuele wereld.</p>
-<p>Tijd voor wat code! Maak een nieuw C#-script in de map <em>Scripts</em>, noem het <em>ViveControllerInputTest</em>, en open het in je favoriete IDE (bijvoorbeeld Visual Studio Code).</p>
+<p>Tijd voor wat code! Maak een nieuw C#-script in de map <em>Scripts</em>, noem het <em>ViveControllerInputTest</em>, en open het in je favoriete IDE door te dubbelklikken op het bestand.</p>
 <p>Verwijder de <code>Start()</code> methode en voeg boven de <code>Update()</code> methode het volgende toe:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> SteamVR_TrackedObject trackedObj;
@@ -208,7 +209,7 @@ Je ziet dat de Console bezig is om elke actie te registreren:</p>
 <h2>De controllers gebruiken met de Objecten</h2>
 <p>VR biedt gebruikers vele mogelijkheden die niet mogelijk zijn in de 'echte wereld', zoals het oppakken van voorwerpen, het onderzoeken en weggooien zonder achteraf op te ruimen.</p>
 <p>Met HTC Vive kun je deze zorgeloze virtuele ervaring creëren door enkele <em>trigger colliders</em> (daar waar je in de virtuele wereld met een object zou <em>botsen</em>) te gebruiken en een beetje code te schrijven.</p>
-<p>Selecteer <em>beide controllers</em> in de <em>Hierarchy</em> en voeg een <em>Rigidbody</em> component eraan toe. (Add Component &gt; Physics &gt; Rigidbody)</p>
+<p>Selecteer <em>beide controllers</em> in de <em>Hierarchy</em> en voeg een <em>Rigidbody</em> component eraan toe. (Add Component &gt; Physics &gt; Rigidbody). Je kan de controllers vinden als kinderen van de CameraRig.</p>
 <p>Vink het selectievakje <em>Is Kinematic</em> en verwijder het vakje <em>Use Gravity</em>:</p>
 <p><img src="index_bestanden/RigidBodySetup.png" alt="RigidBodySetup" class="aligncenter size-full wp-image-149625" width="321" height="162"></p>
 <p>Voeg een <em>Box Collider</em> toe (Add Component &gt; Physics &gt; Box Collider) aan beide controllers en vink <em>Is Trigger</em> aan. </p>
