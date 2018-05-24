@@ -490,18 +490,12 @@ log them to the Console. It’s not a great thing for performance, and
 every millisecond counts in VR. They were handy for testing the input, 
 but should not be used for actual gameplay.</p>
 <p>The next step is using this laser to teleport around the room!</p>
-<h2>Moving Around</h2>
-<p>Moving around in VR isn’t as simple as pushing the player forward; 
-doing so is a sure-fire way to induce nausea. A more feasible way to get
- around is teleportation. </p>
-<p>The player’s sense of perception will accept a sudden position change
- more readily than a gradual one. Subtle changes in a VR setting can 
-upset your feeling of balance and velocity more than suddenly finding 
-yourself in a new place. </p>
-<p>To show exactly where you’ll end up, you’ll use a marker or reticle that’s provided in the <em>Prefabs</em> folder.<br>
-The reticle is a simple, unlit, circular disk:</p>
+<h2>En nu bewegen</h2>
+<p>Je kan de speler in VR niet bewegen door hem simpelweg vooruit te verplaatsen; zo zorg je er gegarandeerd voor dat hij misselijk wordt. Een logischere manier om te bewegen is door teleportatie. </p>
+<p>De speler zal er sneller aan wennen dat hij zich plotseling op een nieuwe plek bevindt, dan wanneer hij langzaam beweegt. Dit komt doordat de speler dan in het spel wel beweegt, maar in het echt stilstaat. </p>
+<p>Om precies aan te wijzen waar de speler terecht zal komen gebruiken we een reticle, dat is Engels voor markering. Deze kan je vinden in de <em>Prefabs</em> map.</p>
 <p><img src="index_bestanden/Reticle.png" alt="Reticle" class="aligncenter size-full wp-image-149638" width="342" height="300"></p>
-<p>To use the reticle, you’ll append the <em>LaserPointer</em> script, so open it in a code editor and add these variables to the top of the class:</p>
+<p>Om de reticle te gebruiken, voegen we wat code toe aan het <em>LaserPointer</em> script. Open het dus en voeg deze variabelen toe aan de bovenkant van het script:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">public</span></span></span></span></span> Transform cameraRigTransform; 
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 2</span></span></span></span></span>
@@ -509,53 +503,50 @@ The reticle is a simple, unlit, circular disk:</p>
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 3</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> GameObject reticle;
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 4</span></span></span></span></span>
-<span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> Transform teleportReticleTransform; 
-<span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 5</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">public</span></span></span></span></span> Transform headTransform; 
-<span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 6</span></span></span></span></span>
+<span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 5</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">public</span></span></span></span></span> Vector3 teleportReticleOffset; 
-<span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 7</span></span></span></span></span>
+<span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 6</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">public</span></span></span></span></span> LayerMask teleportMask; 
-<span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 8</span></span></span></span></span>
+<span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 7</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">bool</span></span></span></span></span> shouldTeleport; 
 </pre>
-<p>Each variable plays a role:</p>
+<p>Elke variabele speelt een rol bij de teleporatie:</p>
 <ol>
-<li>Is the transform of <em>[CameraRig]</em>.</li>
-<li>Stores a reference to the teleport reticle prefab.</li>
-<li>A reference to an instance of the reticle.</li>
-<li>Stores a reference to the teleport reticle transform for ease of use.</li>
-<li>Stores a reference to the player’s head (the camera).</li>
-<li>Is the reticle offset from the floor, so there’s no “Z-fighting” with other surfaces.</li>
-<li>Is a layer mask to filter the areas on which teleports are allowed.</li>
-<li>Is set to <code>true</code> when a valid teleport location is found.</li>
+<li>Is het transform component van de <em>[CameraRig]</em>.</li>
+<li>Bewaart een verwijzing naar de reticle prefab.</li>
+<li>Verwijst naar de instantie van de reticle binnen de game.</li>
+<li>Verwijst naar de transform van het hoofd van de speler(de camera).</li>
+<li>Bewaart hoe ver de reticle zich van het oppervlakte bevindt. Om problemen met textures (en zichtbaarheid) te voorkomen kan de reticle niet in het oppervlak zitten.</li>
+<li>Is een layermask die bepaalt op welke oppervlaktes de speler kan teleporteren.</li>
+<li>Wordt <code>true</code> wanneer de speler naar een geldige plek om te teleporteren wijst.</li>
 </ol>
-<p>In the <code>Update()</code> method, replace this line:</p>
+<p>In de <code>Update()</code> methode, vervang deze regel:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">if</span></span></span></span></span> (Physics.Raycast(trackedObj.transform.position, transform.forward, <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">out</span></span></span></span></span> hit, <span class="hljs-number"><span class="hljs-number"><span class="hljs-number"><span class="hljs-number"><span class="hljs-number">100</span></span></span></span></span>))
 </pre>
-<p>With this one that takes the layer mask into account:</p>
+<p>Voor deze regel die rekening houdt met de layermask:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">if</span></span></span></span></span> (Physics.Raycast(trackedObj.transform.position, transform.forward, <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">out</span></span></span></span></span> hit, <span class="hljs-number"><span class="hljs-number"><span class="hljs-number"><span class="hljs-number"><span class="hljs-number">100</span></span></span></span></span>, teleportMask))
 </pre>
-<p>This makes sure the laser can only hit GameObjects that you can teleport to.</p>
-<p>Also in the <code>Update()</code> method, add this code underneath the call to <code>ShowLaser()</code>:</p>
+<p>Deze zorgt er voor dat de laser alleen de objecten raakt waar je naar toe kan teleporteren.</p>
+<p>Er is nog meer te doen in de <code>Update()</code> methode. Voeg deze code toe onder de aanroep naar <code>ShowLaser()</code>:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 reticle.SetActive(<span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal">true</span></span></span></span></span>);
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 2</span></span></span></span></span>
-teleportReticleTransform.position = hitPoint + teleportReticleOffset;
+teleportReticle.transform.position = hitPoint + teleportReticleOffset;
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 3</span></span></span></span></span>
 shouldTeleport = <span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal">true</span></span></span></span></span>;
 </pre>
-<p>Here’s what this does:</p>
+<p>Dit is wat er gebeurt:</p>
 <ol>
-<li>Show the teleport reticle.</li>
-<li>Move the reticle to where the raycast hit with the addition of an offset to avoid Z-fighting.</li>
-<li>Set <code>shouldTeleport</code> to true to indicate the script found a valid position for teleporting.</li>
+<li>Laat de reticle zien.</li>
+<li>Verplaats de reticle naar de plek waar de laser het oppervlak raakt, en verplaats hem iets van het oppervlak af.</li>
+<li>Verander <code>shouldTeleport</code> naar true omdat de speler een geldige positie aanwijst waar je naar toe kan teleporteren.</li>
 </ol>
-<p>While still in the <code>Update()</code> method, find <code>laser.SetActive(false);</code> and add the following line underneath it: </p>
+<p>Nu je toch in de <code>Update()</code> methode bent, zoek <code>laser.SetActive(false);</code> en voeg onder deze regel de volgende code toe: </p>
 <pre class="language-csharp hljs" lang="csharp">reticle.SetActive(<span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal">false</span></span></span></span></span>);
 </pre>
-<p>This hides the reticle in the absence of a valid target.</p>
-<p>Add the following method to handle the act of teleporting:</p>
+<p>Dit verbergt de reticle als de speler niet naar een plek wijst waar hij naar toe kan teleporteren.</p>
+<p>Voeg de volgende methode toe zodat de speler kan teleporteren:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">Teleport</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">(</span></span></span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span>)
 </span></span></span></span></span>{
     <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
@@ -570,47 +561,34 @@ shouldTeleport = <span class="hljs-literal"><span class="hljs-literal"><span cla
     cameraRigTransform.position = hitPoint + difference;
 }
 </pre>
-<p>Who knew teleporting is as simple as five lines? Let’s step through that code:</p>
+<p>Wie had er ooit gedacht dat teleporteren zo simpel was als 5 regels code? Laten we  er even doorheenlopen:</p>
 <ol>
-<li>Set the <code>shouldTeleport</code> flag to false when teleportation is in progress.</li>
-<li>Hide the reticle.</li>
-<li>Calculate the difference between the positions of the camera rig’s center and the player’s head.</li>
-<li>Reset the y-position for the above difference to 0, because the 
-calculation doesn’t consider the vertical position of the player’s head.</li>
-<li>Move the camera rig to the position of the hit point and add the 
-calculated difference. Without the difference, the player would teleport
- to an incorrect location. See the example below:</li>
+<li>Wijzig de <code>shouldTeleport</code> boolean naar false terwijl de speler teleporteert.</li>
+<li>Verberg de reticle.</li>
+<li>Bereken het verschil tussen het hoofd van de speler en het midden van de CameraRig.</li>
+<li>Reset de y-positie van dat verschil naar 0, omdat het y-verschil niet nodig is voor de berekening. </li>
+<li>Verplaats de cameraRig naar het hitPoint + het verschil. Zonder het verschil zou de speler niet op de goede plaats belanden maar er een stukje naast omdat het hitpoint door rotatie niet helemaal overeenkomt met de plaats waar de camera zich na het verplaatsen zou bevinden.</li>
 </ol>
-<p><img src="index_bestanden/TeleportDifference.gif" alt="TeleportDifference" class="aligncenter size-full wp-image-149724" width="387" height="388"></p>
-<p>As you can see, the difference plays a crucial role in precisely 
-positioning the camera rig and putting the player exactly where they 
-expect to land.</p>
-<p>Add this at the end of <code>Update()</code>, just outside the touchpad press <code>if-else</code> statement:</p>
-<pre class="language-csharp hljs" lang="csharp"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">if</span></span></span></span></span> (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) &amp;&amp; shouldTeleport)
+
+<p>Voeg dit toe aan het einde van de <code>Update()</code> methode, vlak na de <code>if-else</code> voor het indrukken van de touchpad:</p>
+<pre class="language-csharp hljs" lang="csharp"><span class="hljs-keyword">if</span>(Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) &amp;&amp; shouldTeleport)
 {
     Teleport();
 }
 </pre>
-<p>This teleports the player if the touchpad is released and there’s a valid teleport position.</p>
-<p>Finally, add this code to the <code>Start()</code> method:</p>
-<pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
-reticle = Instantiate(teleportReticlePrefab);
-<span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 2</span></span></span></span></span>
-teleportReticleTransform = reticle.transform;
-</pre>
-<ol>
-<li>Spawn a new reticle  and save a reference to it in <code>reticle</code>.</li>
-<li>Store the reticle’s transform component.</li>
-</ol>
-<p>That’s it! <em>Save</em> your script and return to Unity.</p>
-<p>Select both controllers in the Hierarchy and take note of the new fields:</p>
+<p>Deze controleert of de speler naar een geldige positie wijst en teleporteert de speler als hij de touchpad loslaat.</p>
+<p>Voeg tenslotte deze code toe aan de <code>Start()</code> methode:</p>
+<pre class="language-csharp hljs" lang="csharp">reticle = Instantiate(teleportReticlePrefab);</pre>
+<p>Deze code nstantieert een nieuwe <code>reticle</code>.</p>
+<p>Dat is het! <em>Sla het script op</em> en ga terug naar Unity.</p>
+<p>Selecteer nu beide controllers in Unity en kijk naar de nieuwe velden voor de variabelen. </p>
 <p><img src="index_bestanden/NewFields-1.png" alt="NewFields" class="aligncenter size-full wp-image-152466" width="419" height="125"></p>
-<p>Drag <em>[CameraRig]</em> to the Camera Rig Transform slot, drag <em>TeleportReticle</em> from the <em>Prefabs</em> folder to the Teleport Reticle Transform slot and drag <em>Camera (head)</em> to the Head Transform slot.</p>
+<p>Versleep <em>[CameraRig]</em> vanuit de hierarchy naar het <em>Camera Rig Transform</em> veld. Sleep <em>TeleportReticle</em> vanuit de <em>Prefabs</em> map naar de <em>Teleport Reticle Transform</em> veld en versleep <em>Camera (head)</em> vanuit de hierarchy naar het <em>Head Transform</em> veld.</p>
 <p><img src="index_bestanden/DraggingObjects.gif" alt="DraggingObjects" class="aligncenter size-full wp-image-152467" width="492" height="207"></p>
-<p>Now set the <em>Teleport Reticle Offset</em> to <em>(X:0, Y:0.05, Z:0)</em> and set the <em>Teleport Mask</em> to <em>CanTeleport</em>. CanTeleport is not a default layer — it was created for this tutorial. The <em>Floor</em> and <em>Table</em> objects are the only ones that are part of this layer.</p>
-<p>Now play the game and use your laser on the floor to teleport around the room.</p>
+<p>Verander de waardes van <em>Teleport Reticle Offset</em> naar <em>(X:0, Y:0.05, Z:0)</em> en wijzig het <em>Teleport Mask</em> naar <em>CanTeleport</em>. Dit is geen standaardlaag, maar wij hebben deze gemaakt voor de tutorial. Als je zelf een VR game gaat maken kan je zelf ook zo'n laag maken. De <em>Floor</em> en <em>Table</em> objecten zijn de enige objecten die bij deze laag horen.</p>
+<p>Speel nu de game en gebruik de laser op de vloer om te teleporteren.</p>
 <p><img src="index_bestanden/FinalGame.gif" alt="FinalGame" class="aligncenter size-full wp-image-149642" width="495" height="280"></p>
-<p>This sandbox is now fully functional and ready for endless tinkering!</p>	        
+<p>Deze sandbox is nu klaar en je kan hem gebruiken om eindeloos mee te experimenteren!</p>	        
       </article>
       
                                           
@@ -620,21 +598,12 @@ teleportReticleTransform = reticle.transform;
 
 </div>
 </div>
-		
-
-    
-
+	
 		<script type="text/javascript" src="index_bestanden/widgets4963.js"></script>
 <script type="text/javascript" src="index_bestanden/highlight.js"></script>
 <script type="text/javascript" src="index_bestanden/code_highlightingc90e.js"></script>
 
 
 		
-		
-		
-	
-
-
-
 
 <iframe id="rufous-sandbox" scrolling="no" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" title="Twitter analytics iframe" frameborder="0"></iframe><iframe id="rufous-sandbox" scrolling="no" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" title="Twitter analytics iframe" frameborder="0"></iframe><iframe id="rufous-sandbox" scrolling="no" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" title="Twitter analytics iframe" frameborder="0"></iframe></body></html>
