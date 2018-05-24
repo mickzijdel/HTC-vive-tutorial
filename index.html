@@ -112,13 +112,24 @@ zodat je niet duizelig of misselijk wordt.<p></p>
 </div>
 <h2>Het Begin</h2>
 <p>Omschrijving van de scene, camerarig, input</p>
-
-<h2>Handling Input</h2>
-<p>Take one of the controllers in your hand and give it a proper look. Each controller has the following inputs:</p>
+<p>Download het <a href="https://koenig-media.raywenderlich.com/uploads/2016/12/Introduction-To-HTC-Vive-Starter-1.zip" title="starter project" target="_blank" >starter project</a>, Pak het ergens uit en open de map in Unity. Bekijk de mappen in het Project window (projectvenster):</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/12/AssetFolders.png" alt="AssetFolders" width="125" height="117" class="aligncenter size-full wp-image-149604" /></p>
+<p>In elke map staan de volgende dingen:</p>
+<ul>
+<li><em>Materials</em>: Materialen die voor de scène worden gebruikt, inclusief de blauwe ballen</li>
+<li><em>Models</em>: Alle modellen</li>
+<li><em>Physics Materials</em>: Natuurkunde voor de blauwe ballen</li>
+<li><em>Prefabs</em>: Prefabs met losse objecten</li>
+<li><em>Scenes</em>: de scènes van het spel bevinden zich hier</li>
+<li><em>Scripts</em>: Alle scripts</li>
+<li><em>Textures</em>: De enkele textuur (oppervlakte) die door alle objecten in de scène wordt gebruikt</li>
+</ul>
+<h2>Omgaan met input</h2>
+<p>Neem een van de controllers in je hand en kijk er goed naar. Elke controller heeft de volgende inputs:</p>
 <p><img src="index_bestanden/ViveControllerButtons.png" alt="ViveControllerButtons" class="aligncenter size-full wp-image-149620" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons.png 825w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-480x309.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/ViveControllerButtons-650x418.png 650w" sizes="(max-width: 825px) 100vw, 825px" width="825" height="531"></p>
-<p>The <em>touchpad</em> acts as a button and an analog “joystick”. The controller also has a <em>velocity</em> and  <em>rotational velocity</em> as you move and rotate it; this will prove especially handy when interacting with physics objects.</p>
-<p>Time for some code! Create a new C# script in the <em>Scripts</em> folder, name it <em>ViveControllerInputTest</em> and open it in your favorite code editor.</p>
-<p>Remove the <code>Start()</code> method and add the following right above the <code>Update()</code> method:</p>
+<p>De <em>touchpad</em> lijkt een beetje op een “joystick” van een spelcomputer. De controller heeft ook een <em>velocity (snelheid)</em> en <em>rotational velocity (draaisnelheid)</em> terwijl je beweegt en draait; dit zal vooral handig blijken te zijn bij interactie met objecten in de virtuele wereld.</p>
+<p>Tijd voor wat code! Maak een nieuw C#-script in de map <em>Scripts</em>, noem het <em>ViveControllerInputTest</em>, en open het in je favoriete IDE (bijvoorbeeld Visual Studio Code).</p>
+<p>Verwijder de <code>Start()</code> methode en voeg boven de <code>Update()</code> methode het volgende toe:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> SteamVR_TrackedObject trackedObj;
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 2</span></span></span></span></span>
@@ -127,21 +138,21 @@ zodat je niet duizelig of misselijk wordt.<p></p>
     <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">get</span></span></span></span></span> { <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">return</span></span></span></span></span> SteamVR_Controller.Input((<span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">int</span></span></span></span></span>)trackedObj.index); }
 }
 </pre>
-<p>In here, you’ve made: </p>
+<p>Je hebt nu het volgende gemaakt: </p>
 <ol>
-<li>A reference to the object being tracked. In this case, a controller.</li>
-<li>A <code>Device</code> property to provide easy access to the controller. It uses the tracked object’s index to return the controller’s input.</li>
+<li>Een verwijzing naar het object dat wordt gevolgd. In dit geval een controller.</li>
+<li>Een <code>Device</code> eigenschap om gemakkelijke toegang tot de controller te bieden. Het gebruikt de index (verwijzing op de computer) van het gevolgde voorwerp om de invoer van de controller terug te geven.</li>
 </ol>
-<p>Both the head-mounted display and the controllers are <em>tracked objects</em> — their movement and rotation in the real world are tracked by the HTC Vive base stations and sent to the virtual world.</p>
-<p>Now add the following method right above <code>Update()</code>:</p>
+<p>Zowel het op het hoofd gemonteerde display en de controllers zijn <em>tracked objects</em> (gevolgde voorwerpen) - hun beweging en draaiing in de echte wereld worden gevolgd door de HTC Vive-basisstations en worden verzonden naar de virtuele wereld.</p>
+<p>Voeg nu de volgende methode toe direcet boven de <code>Update()</code> methode:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">Awake</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">(</span></span></span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span>)
 </span></span></span></span></span>{
     trackedObj = GetComponent&lt;SteamVR_TrackedObject&gt;();
 }
 </pre>
-<p>Once this script is loaded, the <code>trackedObj</code> gets a reference to the <code>SteamVR_TrackedObject</code> component that’s attached to the controllers:</p>
+<p>Nadat dit script is geladen, krijgt het <code>trackedObj</code> (object dat wordt gevolgd) een verwijzing naar de <code>SteamVR_TrackedObject</code> -component die aan de controllers is gekoppeld:</p>
 <p><img src="index_bestanden/ControllerTrackedObj.png" alt="ControllerTrackedObj" class="aligncenter size-full wp-image-149621" width="321" height="90"></p>
-<p>Now that you have controller access, you can easily read out the input. Add the following inside the <code>Update()</code> method:</p>
+<p>Nu dat je toegang hebt tot de controller, kan je eenvoudig de invoer uitlezen. Voeg het volgende toe binnen de methode <code>Update()</code>:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">if</span></span></span></span></span> (Controller.GetAxis() != Vector2.zero)
 {
@@ -172,43 +183,38 @@ zodat je niet duizelig of misselijk wordt.<p></p>
     Debug.Log(gameObject.name + <span class="hljs-string"><span class="hljs-string"><span class="hljs-string"><span class="hljs-string"><span class="hljs-string">" Grip Release"</span></span></span></span></span>);
 }
 </pre>
-<p>The code above covers most ways you can access the player’s input 
-while they are in VR. It writes the name of the GameObject to the 
-Console to easily differentiate between the left and right controller. 
-Here’s a section-by-section breakdown:</p>
+<p>De bovenstaande code zorgt voor de meeste manieren waarop je toegang kan krijgen tot de invoer van de speler terwijl deze zich in VR bevindt. Het schrijft de naam van het <em>GameObject</em>
+naar de <em>Console</em> om eenvoudig onderscheid te maken tussen de linker en rechter controller.
+ Hier is een beschrijving per onderdeel:</p>
 <ol>
-<li>Get the position of the finger when it’s on the touchpad and write it to the Console.</li>
-<li>When you squeeze the hair trigger, this line writes to the Console. 
-The hair trigger has special methods to check whether it is pressed or 
-not: <code>GetHairTrigger()</code>, <code>GetHairTriggerDown()</code> and <code>GetHairTriggerUp()</code></li>
-<li>If you release the hair trigger, this <code>if</code> statement writes to the Console.</li>
-<li>If you press a grip button, this section writes to the Console. Using the <code>GetPressDown()</code> method is the standard method to check if a button was pressed.</li>
-<li>When you release one of the grip buttons, this writes that action to the Console. Using the <code>GetPressUp()</code> method is the standard way to check if a button was released.</li>
+<li>Zoek de positie van de vinger wanneer deze zich op het touchpad bevindt en schrijf deze naar de Console.</li>
+<li>Als je de trigger inknijpt, schrijft deze ook een regel naar de Console. De trigger heeft speciale methoden om te controleren of deze is ingedrukt of niet: <code>GetHairTrigger()</code>, <code>GetHairTriggerDown()</code> en <code>GetHairTriggerUp()</code></li>
+<li>Als je de trigger loslaat, schrijft het <code>if</code>-blok deze naar de Console.</li>
+<li>Als je op de Grip-knop drukt, schrijft dit stuk naar deze actie naar de Console. De <code>GetPressDown()</code> methode is de standaardmethode om te controleren of op een knop is gedrukt.</li>
+<li>Als je een van de gripknoppen loslaat, wordt deze actie naar de Console geschreven. Het gebruik van de methode <code>GetPressUp()</code> is de standaardmethode om te controleren of een knop is losgelaten.</li>
 </ol>
-<p>The script is now ready to be tested. Save it and return to the Unity editor.</p>
-<p>Select both controllers in the <em>Hierarchy</em> and add the <em>ViveControllerInputTest</em> component to them by dragging the script you just made to the <em>Inspector</em>:</p>
+<p>Het script is nu klaar om te worden getest. Sla het op en ga terug naar de Unity-editor.</p>
+<p>Selecteer beide controllers in de <em>Hierarchy</em> en voeg de <em>ViveControllerInputTest</em> eraan toe door het script dat je zojuist hebt gemaakt naar de <em>Inspector</em> (infovenster) te slepen:</p>
 <p><img src="index_bestanden/AddControllerTestComponents.gif" alt="AddControllerTestComponents" class="aligncenter size-full wp-image-149622" width="730" height="293"></p>
-<p>Run the game again, take both controllers in your hands and look at the Console line at the bottom of the screen:</p>
+<p><em>Run</em> het spel opnieuw, neem beide controllers in handen en kijk naar de Console regels onderaan het scherm:</p>
 <p><img src="index_bestanden/ConsoleDebugLocation.png" alt="ConsoleDebugLocation" class="aligncenter size-full wp-image-149623" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ConsoleDebugLocation.png 506w, https://koenig-media.raywenderlich.com/uploads/2016/12/ConsoleDebugLocation-480x305.png 480w" sizes="(max-width: 506px) 100vw, 506px" width="506" height="321"></p>
-<p>Press buttons, squeeze the trigger and move around on the touchpads. 
-You’ll see the console is busy because each action is registered:</p>
+<p>Druk op de knoppen, knijp de triggers in en laat ze los, en beweeg op de touchpads. 
+Je ziet dat de Console bezig is om elke actie te registreren:</p>
 <p><img src="index_bestanden/ControllerInputDebug.gif" alt="ControllerInputDebug" class="aligncenter size-full wp-image-149624" width="258" height="21"></p>
-<p>That’s it for basic input config. Now you have the power to manipulate the virtual world at your fingertips — literally!</p>
-<h2>Using The Controllers With Physics Objects</h2>
-<p>VR affords users many opportunities that are not possible in the 
-“real world”, including picking objects up, examining them and throwing 
-them around without having to clean up afterward.</p>
-<p>HTC Vive lets you create this carefree virtual experience by employing some trigger colliders and doing a bit of scripting.</p>
-<p>Select <em>both controllers</em> in the Hierarchy and add a <em>Rigidbody</em> component to them. (Add Component &gt; Physics &gt; Rigidbody)</p>
-<p>Check the <em>Is Kinematic</em> checkbox and uncheck <em>Use Gravity</em>:</p>
+<p>Dat is het voor de basis invoer. Nu heb je de macht om de virtuele wereld binnen handbereik te brengen - letterlijk!</p>
+<h2>De controllers gebruiken met de Objecten</h2>
+<p>VR biedt gebruikers vele mogelijkheden die niet mogelijk zijn in de 'echte wereld', zoals het oppakken van voorwerpen, het onderzoeken en weggooien zonder achteraf op te ruimen.</p>
+<p>Met HTC Vive kun je deze zorgeloze virtuele ervaring creëren door enkele <em>trigger colliders</em> (daar waar je in de virtuele wereld met een object zou <em>botsen</em>) te gebruiken en een beetje code te schrijven.</p>
+<p>Selecteer <em>beide controllers</em> in de <em>Hierarchy</em> en voeg een <em>Rigidbody</em> component eraan toe. (Add Component &gt; Physics &gt; Rigidbody)</p>
+<p>Vink het selectievakje <em>Is Kinematic</em> en verwijder het vakje <em>Use Gravity</em>:</p>
 <p><img src="index_bestanden/RigidBodySetup.png" alt="RigidBodySetup" class="aligncenter size-full wp-image-149625" width="321" height="162"></p>
-<p>Add a <em>Box Collider</em> (Add Component &gt; Physics &gt; Box Collider) to both controllers and check <em>Is Trigger</em>. </p>
-<p>The default collider is huge, so you’ll need to resize and reposition it. Set <em>Center</em> to <em>(X:0, Y:-0.04, Z:0.02)</em> and <em>Size</em> to <em>(X:0.14, Y:0.07, Z:0.05)</em>. In this case, you require these kinds of precise values because even a hundredth of a unit affects where the collider ends up.</p>
+<p>Voeg een <em>Box Collider</em> toe (Add Component &gt; Physics &gt; Box Collider) aan beide controllers en vink <em>Is Trigger</em> aan. </p>
+<p>De standaard-collider is enorm, dus je zal het formaat moeten wijzigen en het verplaatsen. Stel <em>Center</em> in op <em>(X:0, Y:-0.04, Z:0.02)</em> en <em>Size</em> op <em>(X:0.14, Y:0.07, Z:0.05)</em>.  In dit geval heb je precies deze waarden nodig, omdat zelfs een een heel kleine afwijking een grote invloed heeft op waar de collider terechtkomt.</p>
 <p><img src="index_bestanden/ControllerBoxCollider.png" alt="ControllerBoxCollider" class="aligncenter size-full wp-image-149626" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerBoxCollider.png 488w, https://koenig-media.raywenderlich.com/uploads/2016/12/ControllerBoxCollider-480x115.png 480w" sizes="(max-width: 488px) 100vw, 488px" width="488" height="117"></p>
-<p>Run the game again. Select a controller in the <em>Hierarchy</em> and pick up the real controller. Look at the <em>Scene</em> view and focus on the controller you’re holding (press <em>F</em>). The collider goes right over the top part of the controller, which is the part you use to pick up objects.</p>
+<p>Run het spel opnieuw. Selecteer een controller in de <em>Hierarchy</em> en pak in de echte wereld controller op. Bekijk de <em>Scene</em>  en concentreer je op de controller die je vasthoudt (druk op <em>F</em>). De collider gaat recht over het bovenste deel van de controller, het deel dat je gebruikt om voorwerpen op te pakken.</p>
 <p><img src="index_bestanden/ControllerColliderScene.png" alt="ControllerColliderScene" class="aligncenter size-full wp-image-149627" width="431" height="278"></p>
-<p>Without a script, this collider is little more than a useless cube — create a new C# script in the <em>Scripts</em> folder, name it <em>ControllerGrabObject</em> and open it.</p>
-<p>Remove the <code>Start()</code> method and add this familiar code in its place:</p>
+<p>Zonder een script is deze collider weinig meer dan een nutteloze kubus - maak een nieuw C#-script in de map <em>Scripts</em>, noem het <em>ControllerGrabObject</em> en open het.</p>
+<p>Verwijder de methode <code>Start()</code> en voeg deze (misschien bekende) code toe:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> SteamVR_TrackedObject trackedObj;
 
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> SteamVR_Controller.Device Controller
@@ -221,20 +227,24 @@ them around without having to clean up afterward.</p>
     trackedObj = GetComponent&lt;SteamVR_TrackedObject&gt;();
 }
 </pre>
-<p>This is exactly the same code you used for the input test script. It 
-gets the controller and stores a reference to it for later use.</p>
-<p>Add these variables just beneath <code>trackedObj</code> :</p>
+<p>Dit is exact dezelfde code die je gebruikte voor het eerste script. Hiermee krijgt de controller een referentie en slaat het op voor later gebruik.</p>
+<p>Voeg deze variabelen toe net onder de boventste <code>trackedObj</code> :</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> GameObject collidingObject; 
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 2</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> GameObject objectInHand; 
 </pre>
-<p>Each variable has a purpose:</p>
+
+
+
+
+
+<p>Elke variabele heeft een doel:</p>
 <ol>
-<li>Stores the GameObject that the trigger is currently colliding with, so you have the ability to grab the object.</li>
-<li>Serves as a reference to the GameObject that the player is currently grabbing.</li>
+<li>Slaat het GameObject op waar de trigger momenteel mee in botsing komt, dus je hebt de mogelijkheid om het object te pakken.</li>
+<li>Dient als een verwijzing naar het GameObject dat de speler momenteel aan het grijpen is.</li>
 </ol>
-<p>Add this underneath the <code>Awake()</code> method:</p>
+<p>Voeg dit toe onder de <code>Awake()</code> methode:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">SetCollidingObject</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">(</span></span></span></span><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params">Collider col</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">)
 </span></span></span></span></span>{
     <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
@@ -246,12 +256,12 @@ gets the controller and stores a reference to it for later use.</p>
     collidingObject = col.gameObject;
 }
 </pre>
-<p>This method accepts a collider as a parameter and uses its GameObject as the <code>collidingObject</code> for grabbing and releasing. Moreover, it:</p>
+<p>Deze methode accepteert een collider (botser) als een parameter en gebruikt het GameObject als het <code>collidingObject</code> (botsende voorwerp)  voor grijpen en loslaten. Bovendien is het:</p>
 <ol>
-<li>Doesn’t make the GameObject a potential grab target if the player is already holding something or the object has no rigidbody.</li>
-<li>Assigns the object as a potential grab target.</li>
+<li>Maakt het GameObject niet tot een mogelijk grijpdoel als de speler al iets vasthoudt of als het voorwerp geen rigidbody (star object) heeft.</li>
+<li>Wijst het object toe als een potentieel grab-doel.</li>
 </ol>
-<p>Now add these trigger methods:</p>
+<p>Voeg nu deze trigger-methoden toe:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">OnTriggerEnter</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">(</span></span></span></span><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params">Collider other</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">)
 </span></span></span></span></span>{
@@ -275,15 +285,13 @@ gets the controller and stores a reference to it for later use.</p>
     collidingObject = <span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal">null</span></span></span></span></span>;
 }
 </pre>
-<p>These methods handle what should happen when the trigger collider enters and exits another collider.</p>
+<p>Deze methoden zorgen ervoor wat er zou moeten gebeuren wanneer de trigger-collider een andere collider betreedt en verlaat.</p>
 <ol>
-<li>When the trigger collider enters another, this sets up the other collider as a potential grab target.</li>
-<li>Similar to section one (// 1), but different because it ensures that
- the target is set when the player holds a controller over an object for
- a while. Without this, the collision may fail or become buggy.</li>
-<li>When the collider exits an object, abandoning an ungrabbed target, this code removes its target by setting it to <code>null</code>.</li>
+<li>Wanneer de trigger-collider op een andere botst, stelt dit de andere collider in als een mogelijk doel om te grijpen.</li>
+<li>Vergelijkbaar met sectie één (<code>// 1</code>), maar anders omdat het ervoor zorgt dat het doel wordt ingesteld wanneer de speler een controller een tijdje over een object heen houdt. Zonder dit kan de botsing mislukken of fout gaan.</li>
+<li>Wanneer de collider een object verlaat en een niet-gepakt doel verlaat, verwijdert deze code zijn doelwit door deze op <code>null</code> te zetten.</li>
 </ol>
-<p>Next you’ll add code to grab an object:</p>
+<p>Vervolgens voeg je code toe om een object te pakken:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">GrabObject</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">(</span></span></span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span>)
 </span></span></span></span></span>{
     <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
@@ -303,13 +311,13 @@ gets the controller and stores a reference to it for later use.</p>
     <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">return</span></span></span></span></span> fx;
 }
 </pre>
-<p>In here, you:</p>
+<p>In dit stuk code doe jij eigenlijk het volgende:</p>
 <ol>
-<li>Move the GameObject inside the player’s hand and remove it from the <code>collidingObject</code> variable.</li>
-<li>Add a new joint that connects the controller to the object using the <code>AddFixedJoint()</code> method below.</li>
-<li>Make a new fixed joint, add it to the controller, and then set it up so it doesn’t break easily. Finally, you return it.</li>
+<li>Verplaats het GameObject in de hand van de speler en verwijder het van de  <code>collidingObject</code> variabele.</li>
+<li>Voeg een nieuwe verbinding toe die de controller met het object verbindt met behulp van de methode <code>AddFixedJoint()</code> hieronder.</li>
+<li>Maak een nieuwe vaste verbinding, voeg deze toe aan de controller en stel deze zo in dat deze niet gemakkelijk breekt. Zo geef je het uiteindelijk terug.</li>
 </ol>
-<p>What can be grabbed must be released. This next block handles releasing the object:</p>
+<p>Wat kan worden gepakt, moet ook weer worden losgelaten. Dit volgende blok code behandelt het loslaten van het object:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">ReleaseObject</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">(</span></span></span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params"></span>)
 </span></span></span></span></span>{
     <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
@@ -326,19 +334,15 @@ gets the controller and stores a reference to it for later use.</p>
     objectInHand = <span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal"><span class="hljs-literal">null</span></span></span></span></span>;
 }
 </pre>
-<p>This code removes the grabbed object’s fixed joint and controls its 
-speed and rotation when the player tosses it away. The controller’s 
-velocity is key here. Without using it, the discarded object would drop 
-straight down no matter how perfect your throw might be. Trust me, it 
-doesn’t feel right. :]</p>
-<p>Section-by-section breakdown:</p>
+<p>Deze code verwijdert de vaste verbinding van het vastgepakte object en regelt de snelheid en draaiing wanneer de speler het weggooit. De snelheid van de controller staat hier centraal. Zonder het te gebruiken, zou het losgelaten object recht naar beneden vallen, ongeacht hoe perfect je worp zou kunnen zijn. Vertrouw me, het voelt niet goed. :]</p>
+<p>Omschrijving per stukje:</p>
 <ol>
-<li>Make sure there’s a fixed joint attached to the controller.</li>
-<li>Remove the connection to the object held by the joint and destroy the joint.</li>
-<li>Add the speed and rotation of the controller when the player releases the object, so the result is a realistic arc.</li>
-<li>Remove the reference to the formerly attached object.</li>
+<li>Zorg ervoor dat er een vast verbinding aan de controller is bevestigd.</li>
+<li>Verwijder de connectie met het voorwerp dat door het verbinging wordt vastgehouden en vernietig de verbinding.</li>
+<li>Voeg de snelheid en draaiing van de controller toe wanneer de speler het object loslaat, zodat het resultaat een realistische boog is.</li>
+<li>Verwijder de verwijzing naar het eerder gekoppelde object.</li>
 </ol>
-<p>Finally, add this inside <code>Update()</code> to handle the controller input:</p>
+<p>Voeg ten slotte dit toe aan <code>Update()</code> om de controller input te verwerken:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">if</span></span></span></span></span> (Controller.GetHairTriggerDown())
 {
@@ -358,17 +362,15 @@ doesn’t feel right. :]</p>
 }
 </pre>
 <ol>
-<li>When the player squeezes the trigger and there’s a potential grab target, this grabs it.</li>
-<li>If the player releases the trigger and there’s an object attached to the controller, this releases it.</li>
+<li>Wanneer de speler de trigger (trekker) indrukt en er een mogelijk grijpdoel is, grijpt hij deze.</li>
+<li>Als de speler de trigger loslaat en er een voorwerp aan de controller is bevestigd, wordt deze losgelaten.</li>
 </ol>
-<p>I bet you can’t wait to try this out! Save the script and return to the editor.</p>
-<p>Select both controllers in the <em>Hierarchy</em> and drag your new script onto the <em>Inspector</em> to make it into a component.</p>
+<p>Ik wed dat je niet kunt wachten om dit uit te proberen! Sla het script op en keer terug naar de editor.</p>
+<p>Selecteer beide controllers in de <em>Hierarchy</em> en sleep je nieuwe script naar de <em>Inspector</em> om er een component van te maken.</p>
 <p><img src="index_bestanden/DragGrabScript.gif" alt="DragGrabScript" class="aligncenter size-full wp-image-149628" width="568" height="254"></p>
-<p>Time to have some fun! Get your controllers ready, start the game and
- put on the headset. Pick up and toss around some cubes and balls using 
-the <em>hair trigger</em>. You can even juggle with a bit of practice.</p>
+<p>Tijd om plezier te hebben! Zorg ervoor dat je controllers klaar staan, start het spel en zet de headset op. Neem wat blokjes en ballen op en gooi ze met de <em>trigger</em>. Je kunt zelfs jongleren met een beetje oefenen.</p>
 <p><img src="index_bestanden/GrabbingPlay.gif" alt="GrabbingPlay" class="aligncenter size-full wp-image-149629" width="454" height="256"></p>
-<p>You have to hand it to yourself — you’re pretty awesome right now. But I think you can make your VR experience even cooler!</p>
+<p>Je mag het hardop zeggen: "ik ben nu behoorlijk gaaf!" Maar ik denk dat je je VR-ervaring nog cooler kunt maken!</p>
 <h2>Making A Laser Pointer</h2>
 <p>A laser pointer is handy in a VR world for all sorts of reasons. You 
 can use them to pop virtual balloons, aim guns better and frustrate 
