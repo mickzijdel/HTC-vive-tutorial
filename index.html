@@ -375,24 +375,21 @@ Je ziet dat de Console bezig is om elke actie te registreren:</p>
 <p>Tijd om plezier te hebben! Zorg ervoor dat je controllers klaar staan, start het spel en zet de headset op. Neem wat blokjes en ballen op en gooi ze met de <em>trigger</em>. Je kunt zelfs jongleren met een beetje oefenen.</p>
 <p><img src="index_bestanden/GrabbingPlay.gif" alt="GrabbingPlay" class="aligncenter size-full wp-image-149629" width="454" height="256"></p>
 <p>Je mag het hardop zeggen: "ik ben nu behoorlijk gaaf!" Maar ik denk dat je je VR-ervaring nog cooler kunt maken!</p>
-<h2>Making A Laser Pointer</h2>
-<p>A laser pointer is handy in a VR world for all sorts of reasons. You 
-can use them to pop virtual balloons, aim guns better and frustrate 
-digital kittens.</p>
-<p>Making one is quite simple. You’ll just need a cube and another 
-script. Start off by creating a new Cube in the Hierarchy (Create &gt; 
-3D Object &gt; Cube).</p>
+<h2>Een laser maken!</h2>
+<p>Een laser pointer is handig in een VR-wereld om allerlei redenen. Je
+kan ze gebruiken om virtuele ballonnen te laten knallen, kanonnen beter te richten, of om digitale katten te aaien.</p>
+<p>Het maken van een pointer is vrij eenvoudig. Je hebt alleen een kubus en een ander script nodig. Begin met het maken van een nieuwe kubus in de hiërarchie Hierarchy (Create &gt; 3D Object &gt; Cube).</p>
 <p><img src="index_bestanden/CreateCube.png" alt="CreateCube" class="aligncenter size-full wp-image-149630" width="341" height="242"></p>
-<p>Name it <em>Laser</em>, set its position to <em>(X:0, Y:5, Z:0)</em>, change the scale to <em>(X:0.005, Y:0.005, Z:0)</em> and remove the <em>Box Collider</em> component. Focus on it and you should see it floating above the rest of the level:</p>
+<p>Geef het een naam <em>Laser</em>, stel de positie in op <em>(X:0, Y:5, Z:0)</em>, verander de schaal naar <em>(X:0.005, Y:0.005, Z:0)</em> en verwijder de <em>Box Collider</em>-component. Concentreer je erop en je zou het boven de rest van het level moeten zien zweven:</p>
 <p><img src="index_bestanden/FloatLaser.png" alt="FloatLaser" class="aligncenter size-full wp-image-149631" width="376" height="261"></p>
-<p>Lasers shouldn’t cast shadows, and they’re always the same color, so you can get the desired effect by using an unlit material.</p>
-<p>Create a new material in the <em>Materials</em> folder and name it <em>Laser</em>, and then change its shader to <em>Unlit/Color</em> and set its <em>Main Color</em> to pure red:</p>
+<p>Lasers mogen geen schaduwen werpen en ze hebben altijd dezelfde kleur, dus je kunt het gewenste effect krijgen door een onverlicht materiaal te gebruiken.</p>
+<p>Maak een nieuw materiaal in de map <em>Materials</em> en noem het <em>Laser</em>, en verander vervolgens de 'shader' in <em>Unlit/Color</em> en stel de <em>Main Color</em> in op puur rood:</p>
 <p><img src="index_bestanden/LaserMat.png" alt="LaserMat" class="aligncenter size-full wp-image-149632" width="276" height="119"></p>
-<p>Assign the new material by dragging it onto the Laser in the <em>Scene</em> view. Alternatively, you can drag it onto the laser in the <em>Hierarchy</em>.</p>
+<p> Wijs het nieuwe materiaal toe door het naar de laser te slepen in de <em>Scene</em> view. Je kunt het ook naar de laser in de <em>Hierarchy</em> te slepen.</p>
 <p><img src="index_bestanden/DragLaserMat.gif" alt="DragLaserMat" class="aligncenter size-full wp-image-149633" width="784" height="151"></p>
-<p>Finally, drag the <em>Laser</em> to the <em>Prefabs</em> folder and delete the original one from the Hierarchy.</p>
+<p>Sleep ten slotte de <em>Laser</em> naar de map <em>Prefabs</em> en verwijder de originele uit de hiërarchie.</p>
 <p><img src="index_bestanden/DragLaserToPrefabs.png" alt="DragLaserToPrefabs" class="aligncenter size-full wp-image-152463" width="411" height="188"></p>
-<p>Now make a new C# script named <em>LaserPointer</em> in the <em>Scripts</em> folder and open it. Add this familiar helper code:</p>
+<p>Maak nu een nieuw C#-script met de naam <em>LaserPointer</em> in de map <em>Scripts</em> en open het. Voeg deze (nu vertrouwde) helpercode toe:
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> SteamVR_TrackedObject trackedObj;
 
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> SteamVR_Controller.Device Controller
@@ -405,7 +402,7 @@ script. Start off by creating a new Cube in the Hierarchy (Create &gt;
     trackedObj = GetComponent&lt;SteamVR_TrackedObject&gt;();
 }
 </pre>
-<p>Add these variables underneath <code>trackedObj</code>:</p>
+<p>Voeg deze variabelen toe onder <code>trackedObj</code>:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">public</span></span></span></span></span> GameObject laserPrefab;
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 2</span></span></span></span></span>
@@ -416,12 +413,12 @@ script. Start off by creating a new Cube in the Hierarchy (Create &gt;
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">private</span></span></span></span></span> Vector3 hitPoint; 
 </pre>
 <ol>
-<li>This is a reference to the Laser’s prefab.</li>
-<li><code>laser</code> stores a reference to an instance of the laser.</li>
-<li>The transform component is stored for ease of use.</li>
-<li>This is the position where the laser hits.</li>
+<li>Dit is een verwijzing naar het prefab van de Laser.</li>
+<li><code>laser</code> slaat een verwijzing naar een instantie van de laser op.</li>
+<li>De transformatiecomponent wordt opgeslagen voor gebruiksgemak.</li>
+<li>Dit is de positie waar de laser raakt.</li>
 </ol>
-<p>Add this method to show the laser:</p>
+<p>Voeg deze methode toe om de laser te tonen:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"> </span></span></span></span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">ShowLaser</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">(</span></span></span></span><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params"><span class="hljs-function"><span class="hljs-params">RaycastHit hit</span></span></span></span></span></span></span></span></span><span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-function">)
 </span></span></span></span></span>{
     <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
@@ -435,15 +432,15 @@ script. Start off by creating a new Cube in the Hierarchy (Create &gt;
         hit.distance);
 }
 </pre>
-<p>This method takes a <code>RaycastHit</code> as a parameter because it contains the position of the hit and the distance it traveled. </p>
-<p>Stepping through each section:</p>
+<p>Deze methode neemt een <code>RaycastHit</code> als een parameter, omdat deze de positie van de "hit" en de afgelegde afstand bevat.</p>
+<p>Door elke sectie stappen:</p>
 <ol>
-<li>Show the laser.</li>
-<li>Position the laser between the controller and the point where the raycast hits. You use <code>Lerp</code> because you can give it two positions and the percent it should travel. If you pass it <em>0.5f</em>, which is 50%, it returns the precise middle point.</li>
-<li>Point the laser at the position where the raycast hit.</li>
-<li>Scale the laser so it fits perfectly between the two positions.</li>
+<li>Laat de laser zien.</li>
+<li>Plaats de laser tussen de controller en het punt waar de raycast raakt. Je gebruikt <code>Lerp</code> omdat je het twee posities kunt geven en het percentage dat het moet afleggen. Als je <em>0.5f</em> doorgeeft, wat 50% is, wordt het exacte middelpunt geretourneerd.</li>
+<li>Richt de laser op de positie waar de raycast is geraakt.</li>
+<li>Schaal de laser zodanig dat deze perfect tussen de twee posities past.</li>
 </ol>
-<p>Add the following inside the <code>Update()</code> method to make use of the player’s input:</p>
+<p>Voeg het volgende toe aan de methode <code>Update()</code> om gebruik te maken van de invoer van de speler:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">if</span></span></span></span></span> (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
 {
@@ -462,34 +459,30 @@ script. Start off by creating a new Cube in the Hierarchy (Create &gt;
 }
 </pre>
 <ol>
-<li>If the touchpad is held down…</li>
-<li>Shoot a ray from the controller. If it hits something, make it store the point where it hit and show the laser.</li>
-<li>Hide the laser when the player released the touchpad.</li>
+
+<li>Als het touchpad wordt ingedrukt...</li>
+<li>Schiet een straal van de controller. Als het iets raakt, bewaar dan het punt waar het raakt en laat de laser zien.</li>
+<li>Verberg de laser wanneer de speler de touchpad heeft vrijgegeven.</li>
 </ol>
-<p>Add the following inside of the empty <code>Start()</code> method:</p>
+<p>Voeg het volgende toe aan de lege <code>Start()</code>-methode:</p>
 <pre class="language-csharp hljs" lang="csharp"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 1</span></span></span></span></span>
 laser = Instantiate(laserPrefab);
 <span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment"><span class="hljs-comment">// 2</span></span></span></span></span>
 laserTransform = laser.transform;
 </pre>
 <ol>
-<li>Spawn a new laser and save a reference to it in <code>laser</code>.</li>
-<li>Store the laser’s transform component.</li>
+<li>Maak een nieuwe laser en bewaar een verwijzing ernaar in <code>laser</code>.</li>
+<li>Bewaar de transformatiecomponent van de laser.</li>
 </ol>
-<p>Save this script and return to the editor. Select both controllers in the <em>Hierarchy</em> and drag the laser script onto the <em>Inspector</em> to make it into a component.</p>
+<p>Sla dit script op en keer terug naar de editor. Selecteer beide controllers in de <em>Hierarchy</em> en sleep het laserscript naar de <em>Inspector</em> om er een component van te maken.</p>
 <p><img src="index_bestanden/Draglaser.png" alt="Draglaser" class="aligncenter size-full wp-image-149634" srcset="https://koenig-media.raywenderlich.com/uploads/2016/12/Draglaser.png 712w, https://koenig-media.raywenderlich.com/uploads/2016/12/Draglaser-480x150.png 480w, https://koenig-media.raywenderlich.com/uploads/2016/12/Draglaser-650x203.png 650w" sizes="(max-width: 712px) 100vw, 712px" width="712" height="222"></p>
-<p>Now drag the <em>Laser</em> prefab from the <em>Prefabs</em> folder onto the <em>Laser</em> slot in the <em>Inspector</em>:</p>
+<p>Sleep nu het <em>Laser</em> prefab van de map <em>Prefabs</em> naar het <em>Laser</em> slot in de <em>Inspector</em>:</p>
 <p><img src="index_bestanden/DragLaserToField.gif" alt="DragLaserToField" class="aligncenter size-full wp-image-152464" width="502" height="190"></p>
-<p>Save your project and give the game another run. Pick up a 
-controller, put on the headset and try holding the touchpad. You’ll see a
- laser now:</p>
+<p>Sla je project op en geef het spel een nieuwe run. Pak een controller op, zet de headset op en probeer de touchpad vast te houden. Je ziet nu een laser:</p>
 <p><img src="index_bestanden/ShootLaser.gif" alt="ShootLaser" class="aligncenter size-full wp-image-149636" width="460" height="260"></p>
-<p>Before moving on, remove the input test components from the controllers by right-clicking them and selecting <em>Remove Component</em>.</p>
-<p>You’re removing them because they write strings for every frame and 
-log them to the Console. It’s not a great thing for performance, and 
-every millisecond counts in VR. They were handy for testing the input, 
-but should not be used for actual gameplay.</p>
-<p>The next step is using this laser to teleport around the room!</p>
+<p>Voordat we verder gaat, verwijdert u de invoertestcomponenten van de controllers door er met de rechtermuisknop op <em>Remove Component</em> te klikken.
+Je verwijdert ze omdat ze "strings" (stukjes tekst) voor elk frame wegschrijven en deze bij de console registreren. Het is niet goed voor de snelheid van het spel, en elke milliseconde telt mee voor VR. Ze waren handig om de invoer te testen, maar zouden niet moeten worden gebruikt voor de echte gameplay.</p>
+<p>De volgende stap is het gebruik van deze laser om door de kamer te teleporteren!</p>
 <h2>En nu bewegen</h2>
 <p>Je kan de speler in VR niet bewegen door hem simpelweg vooruit te verplaatsen; zo zorg je er gegarandeerd voor dat hij misselijk wordt. Een logischere manier om te bewegen is door teleportatie. </p>
 <p>De speler zal er sneller aan wennen dat hij zich plotseling op een nieuwe plek bevindt, dan wanneer hij langzaam beweegt. Dit komt doordat de speler dan in het spel wel beweegt, maar in het echt stilstaat. </p>
